@@ -49,7 +49,6 @@
   /**
    * The JsonApiMeta model module.
    * @module model/JsonApiMeta
-   * @version 2.0.0
    */
 
   /**

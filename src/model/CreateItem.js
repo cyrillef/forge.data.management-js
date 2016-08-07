@@ -49,7 +49,6 @@
   /**
    * The CreateItem model module.
    * @module model/CreateItem
-   * @version 2.0.0
    */
 
   /**

@@ -49,7 +49,6 @@
   /**
    * The Storage model module.
    * @module model/Storage
-   * @version 2.0.0
    */
 
   /**

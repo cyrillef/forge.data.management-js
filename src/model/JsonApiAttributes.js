@@ -49,7 +49,6 @@
   /**
    * The JsonApiAttributes model module.
    * @module model/JsonApiAttributes
-   * @version 2.0.0
    */
 
   /**

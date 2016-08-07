@@ -49,7 +49,6 @@
   /**
    * The JsonApiDocument model module.
    * @module model/JsonApiDocument
-   * @version 2.0.0
    */
 
   /**

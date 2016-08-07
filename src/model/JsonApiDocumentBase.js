@@ -49,7 +49,6 @@
   /**
    * The JsonApiDocumentBase model module.
    * @module model/JsonApiDocumentBase
-   * @version 2.0.0
    */
 
   /**

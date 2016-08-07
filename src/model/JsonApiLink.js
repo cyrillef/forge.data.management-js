@@ -49,7 +49,6 @@
   /**
    * The JsonApiLink model module.
    * @module model/JsonApiLink
-   * @version 2.0.0
    */
 
   /**

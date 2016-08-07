@@ -49,7 +49,6 @@
   /**
    * The JsonApiVersionJsonapi model module.
    * @module model/JsonApiVersionJsonapi
-   * @version 2.0.0
    */
 
   /**

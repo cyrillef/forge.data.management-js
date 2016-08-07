@@ -49,7 +49,6 @@
   /**
    * The CreateVersion model module.
    * @module model/CreateVersion
-   * @version 2.0.0
    */
 
   /**

@@ -49,7 +49,6 @@
   /**
    * The Item model module.
    * @module model/Item
-   * @version 2.0.0
    */
 
   /**

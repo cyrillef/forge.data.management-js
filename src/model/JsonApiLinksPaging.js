@@ -49,7 +49,6 @@
   /**
    * The JsonApiLinksPaging model module.
    * @module model/JsonApiLinksPaging
-   * @version 2.0.0
    */
 
   /**

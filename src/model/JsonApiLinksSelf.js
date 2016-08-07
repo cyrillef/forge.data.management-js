@@ -49,7 +49,6 @@
   /**
    * The JsonApiLinksSelf model module.
    * @module model/JsonApiLinksSelf
-   * @version 2.0.0
    */
 
   /**

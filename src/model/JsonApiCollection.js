@@ -49,7 +49,6 @@
   /**
    * The JsonApiCollection model module.
    * @module model/JsonApiCollection
-   * @version 2.0.0
    */
 
   /**

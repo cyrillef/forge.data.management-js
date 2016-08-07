@@ -49,7 +49,6 @@
   /**
    * The JsonApiRelationshipsLinksInternal model module.
    * @module model/JsonApiRelationshipsLinksInternal
-   * @version 2.0.0
    */
 
   /**

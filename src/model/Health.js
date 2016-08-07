@@ -49,7 +49,6 @@
   /**
    * The Health model module.
    * @module model/Health
-   * @version 2.0.0
    */
 
   /**

@@ -49,7 +49,6 @@
   /**
    * The CreateRef model module.
    * @module model/CreateRef
-   * @version 2.0.0
    */
 
   /**

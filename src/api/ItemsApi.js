@@ -46,7 +46,6 @@
   /**
    * Items service.
    * @module api/ItemsApi
-   * @version 2.0.0
    */
 
   /**

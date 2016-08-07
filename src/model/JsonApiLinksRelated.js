@@ -49,7 +49,6 @@
   /**
    * The JsonApiLinksRelated model module.
    * @module model/JsonApiLinksRelated
-   * @version 2.0.0
    */
 
   /**

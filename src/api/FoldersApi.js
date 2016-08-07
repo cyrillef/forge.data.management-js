@@ -46,7 +46,6 @@
   /**
    * Folders service.
    * @module api/FoldersApi
-   * @version 2.0.0
    */
 
   /**

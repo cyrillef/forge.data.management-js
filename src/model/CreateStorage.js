@@ -49,7 +49,6 @@
   /**
    * The CreateStorage model module.
    * @module model/CreateStorage
-   * @version 2.0.0
    */
 
   /**

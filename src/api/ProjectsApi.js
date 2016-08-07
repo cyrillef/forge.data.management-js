@@ -46,7 +46,6 @@
   /**
    * Projects service.
    * @module api/ProjectsApi
-   * @version 2.0.0
    */
 
   /**

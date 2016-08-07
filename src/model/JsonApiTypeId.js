@@ -49,7 +49,6 @@
   /**
    * The JsonApiTypeId model module.
    * @module model/JsonApiTypeId
-   * @version 2.0.0
    */
 
   /**

@@ -49,7 +49,6 @@
   /**
    * The JsonApiRelationshipsLinksRefs model module.
    * @module model/JsonApiRelationshipsLinksRefs
-   * @version 2.0.0
    */
 
   /**

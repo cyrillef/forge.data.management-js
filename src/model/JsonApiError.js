@@ -49,7 +49,6 @@
   /**
    * The JsonApiError model module.
    * @module model/JsonApiError
-   * @version 2.0.0
    */
 
   /**

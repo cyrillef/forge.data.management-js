@@ -46,7 +46,6 @@
   /**
    * Hubs service.
    * @module api/HubsApi
-   * @version 2.0.0
    */
 
   /**

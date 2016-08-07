@@ -49,7 +49,6 @@
   /**
    * The JsonApiRelationshipsLinksExternalResource model module.
    * @module model/JsonApiRelationshipsLinksExternalResource
-   * @version 2.0.0
    */
 
   /**

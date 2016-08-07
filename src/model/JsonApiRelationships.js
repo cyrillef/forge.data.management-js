@@ -49,7 +49,6 @@
   /**
    * The JsonApiRelationships model module.
    * @module model/JsonApiRelationships
-   * @version 2.0.0
    */
 
   /**

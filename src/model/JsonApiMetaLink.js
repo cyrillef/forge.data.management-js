@@ -49,7 +49,6 @@
   /**
    * The JsonApiMetaLink model module.
    * @module model/JsonApiMetaLink
-   * @version 2.0.0
    */
 
   /**

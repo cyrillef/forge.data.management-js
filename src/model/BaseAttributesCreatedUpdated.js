@@ -49,7 +49,6 @@
   /**
    * The BaseAttributesCreatedUpdated model module.
    * @module model/BaseAttributesCreatedUpdated
-   * @version 2.0.0
    */
 
   /**

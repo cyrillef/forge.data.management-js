@@ -49,7 +49,6 @@
   /**
    * The JsonApiResource model module.
    * @module model/JsonApiResource
-   * @version 2.0.0
    */
 
   /**

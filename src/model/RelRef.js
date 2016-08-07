@@ -49,7 +49,6 @@
   /**
    * The RelRef model module.
    * @module model/RelRef
-   * @version 2.0.0
    */
 
   /**

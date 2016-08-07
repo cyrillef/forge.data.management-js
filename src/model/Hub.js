@@ -49,7 +49,6 @@
   /**
    * The Hub model module.
    * @module model/Hub
-   * @version 2.0.0
    */
 
   /**

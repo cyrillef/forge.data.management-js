@@ -49,7 +49,6 @@
   /**
    * The BaseAttributesExtensionObject model module.
    * @module model/BaseAttributesExtensionObject
-   * @version 2.0.0
    */
 
   /**
