@@ -74,6 +74,7 @@
      * @param {module:api/FoldersApi~getFolderCallback} callback The callback function, accepting three arguments: error, data, response
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
+    this.getFolderEndPoint ='/data/v1/projects/{project_id}/folders/{folder_id}' ;
     this.getFolder = function(projectId, folderId, callback) {
       var postBody = null;
 
@@ -105,11 +106,11 @@
       var returnType = null;
 
       return this.apiClient.callApi(
-        '/data/v1/projects/{project_id}/folders/{folder_id}', 'GET',
+        this.getFolderEndPoint, 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the getFolderContents operation.
@@ -133,6 +134,7 @@
      * data is of type: {@link module:model/JsonApiCollection}
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/JsonApiCollection}
      */
+    this.getFolderContentsEndPoint ='/data/v1/projects/{project_id}/folders/{folder_id}/contents' ;
     this.getFolderContents = function(projectId, folderId, opts, callback) {
       opts = opts || {};
       var postBody = null;
@@ -170,11 +172,11 @@
       var returnType = JsonApiCollection;
 
       return this.apiClient.callApi(
-        '/data/v1/projects/{project_id}/folders/{folder_id}/contents', 'GET',
+        this.getFolderContentsEndPoint, 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the getFolderParent operation.
@@ -191,6 +193,7 @@
      * @param {module:api/FoldersApi~getFolderParentCallback} callback The callback function, accepting three arguments: error, data, response
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
+    this.getFolderParentEndPoint ='/data/v1/projects/{project_id}/folders/{folder_id}/parent' ;
     this.getFolderParent = function(projectId, folderId, callback) {
       var postBody = null;
 
@@ -222,11 +225,11 @@
       var returnType = null;
 
       return this.apiClient.callApi(
-        '/data/v1/projects/{project_id}/folders/{folder_id}/parent', 'GET',
+        this.getFolderParentEndPoint, 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the getFolderRefs operation.
@@ -248,6 +251,7 @@
      * data is of type: {@link module:model/JsonApiCollection}
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/JsonApiCollection}
      */
+    this.getFolderRefsEndPoint ='/data/v1/projects/{project_id}/folders/{folder_id}/refs' ;
     this.getFolderRefs = function(projectId, folderId, opts, callback) {
       opts = opts || {};
       var postBody = null;
@@ -283,11 +287,11 @@
       var returnType = JsonApiCollection;
 
       return this.apiClient.callApi(
-        '/data/v1/projects/{project_id}/folders/{folder_id}/refs', 'GET',
+        this.getFolderRefsEndPoint, 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the getFolderRelationshipsRefs operation.
@@ -311,6 +315,7 @@
      * data is of type: {@link Object}
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
+    this.getFolderRelationshipsRefsEndPoint ='/data/v1/projects/{project_id}/folders/{folder_id}/relationships/refs' ;
     this.getFolderRelationshipsRefs = function(projectId, folderId, opts, callback) {
       opts = opts || {};
       var postBody = null;
@@ -348,11 +353,11 @@
       var returnType = Object;
 
       return this.apiClient.callApi(
-        '/data/v1/projects/{project_id}/folders/{folder_id}/relationships/refs', 'GET',
+        this.getFolderRelationshipsRefsEndPoint, 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the postFolderRelationshipsRef operation.
@@ -370,6 +375,7 @@
      * @param {module:api/FoldersApi~postFolderRelationshipsRefCallback} callback The callback function, accepting three arguments: error, data, response
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
+    this.postFolderRelationshipsRefEndPoint ='/data/v1/projects/{project_id}/folders/{folder_id}/relationships/refs' ;
     this.postFolderRelationshipsRef = function(projectId, folderId, body, callback) {
       var postBody = body;
 
@@ -406,11 +412,11 @@
       var returnType = null;
 
       return this.apiClient.callApi(
-        '/data/v1/projects/{project_id}/folders/{folder_id}/relationships/refs', 'POST',
+        this.postFolderRelationshipsRefEndPoint, 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
   };
 
   return exports;

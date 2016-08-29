@@ -72,6 +72,7 @@
      * @param {module:api/ItemsApi~getDataHealthCallback} callback The callback function, accepting three arguments: error, data, response
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
+    this.getDataHealthEndPoint ='/data/v1/health' ;
     this.getDataHealth = function(callback) {
       var postBody = null;
 
@@ -91,11 +92,11 @@
       var returnType = null;
 
       return this.apiClient.callApi(
-        '/data/v1/health', 'GET',
+        this.getDataHealthEndPoint, 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the getItem operation.
@@ -113,6 +114,7 @@
      * data is of type: {@link Object}
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
+    this.getItemEndPoint ='/data/v1/projects/{project_id}/items/{item_id}' ;
     this.getItem = function(projectId, itemId, callback) {
       var postBody = null;
 
@@ -144,11 +146,11 @@
       var returnType = Object;
 
       return this.apiClient.callApi(
-        '/data/v1/projects/{project_id}/items/{item_id}', 'GET',
+        this.getItemEndPoint, 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the getItemParentFolder operation.
@@ -165,6 +167,7 @@
      * @param {module:api/ItemsApi~getItemParentFolderCallback} callback The callback function, accepting three arguments: error, data, response
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
+    this.getItemParentFolderEndPoint ='/data/v1/projects/{project_id}/items/{item_id}/parent' ;
     this.getItemParentFolder = function(projectId, itemId, callback) {
       var postBody = null;
 
@@ -196,11 +199,11 @@
       var returnType = null;
 
       return this.apiClient.callApi(
-        '/data/v1/projects/{project_id}/items/{item_id}/parent', 'GET',
+        this.getItemParentFolderEndPoint, 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the getItemRefs operation.
@@ -222,6 +225,7 @@
      * data is of type: {@link module:model/JsonApiCollection}
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/JsonApiCollection}
      */
+    this.getItemRefsEndPoint ='/data/v1/projects/{project_id}/items/{item_id}/refs' ;
     this.getItemRefs = function(projectId, itemId, opts, callback) {
       opts = opts || {};
       var postBody = null;
@@ -257,11 +261,11 @@
       var returnType = JsonApiCollection;
 
       return this.apiClient.callApi(
-        '/data/v1/projects/{project_id}/items/{item_id}/refs', 'GET',
+        this.getItemRefsEndPoint, 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the getItemRelationshipsRefs operation.
@@ -285,6 +289,7 @@
      * data is of type: {@link Object}
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
+    this.getItemRelationshipsRefsEndPoint ='/data/v1/projects/{project_id}/items/{item_id}/relationships/refs' ;
     this.getItemRelationshipsRefs = function(projectId, itemId, opts, callback) {
       opts = opts || {};
       var postBody = null;
@@ -322,11 +327,11 @@
       var returnType = Object;
 
       return this.apiClient.callApi(
-        '/data/v1/projects/{project_id}/items/{item_id}/relationships/refs', 'GET',
+        this.getItemRelationshipsRefsEndPoint, 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the getItemTip operation.
@@ -344,6 +349,7 @@
      * data is of type: {@link Object}
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
+    this.getItemTipEndPoint ='/data/v1/projects/{project_id}/items/{item_id}/tip' ;
     this.getItemTip = function(projectId, itemId, callback) {
       var postBody = null;
 
@@ -375,11 +381,11 @@
       var returnType = Object;
 
       return this.apiClient.callApi(
-        '/data/v1/projects/{project_id}/items/{item_id}/tip', 'GET',
+        this.getItemTipEndPoint, 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the getItemVersions operation.
@@ -404,6 +410,7 @@
      * data is of type: {@link Object}
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
+    this.getItemVersionsEndPoint ='/data/v1/projects/{project_id}/items/{item_id}/versions' ;
     this.getItemVersions = function(projectId, itemId, opts, callback) {
       opts = opts || {};
       var postBody = null;
@@ -442,11 +449,11 @@
       var returnType = Object;
 
       return this.apiClient.callApi(
-        '/data/v1/projects/{project_id}/items/{item_id}/versions', 'GET',
+        this.getItemVersionsEndPoint, 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the postItemRelationshipsRef operation.
@@ -464,6 +471,7 @@
      * @param {module:api/ItemsApi~postItemRelationshipsRefCallback} callback The callback function, accepting three arguments: error, data, response
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
+    this.postItemRelationshipsRefEndPoint ='/data/v1/projects/{project_id}/items/{item_id}/relationships/refs' ;
     this.postItemRelationshipsRef = function(projectId, itemId, body, callback) {
       var postBody = body;
 
@@ -500,11 +508,11 @@
       var returnType = null;
 
       return this.apiClient.callApi(
-        '/data/v1/projects/{project_id}/items/{item_id}/relationships/refs', 'POST',
+        this.postItemRelationshipsRefEndPoint, 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
   };
 
   return exports;

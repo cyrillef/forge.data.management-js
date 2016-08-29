@@ -73,6 +73,7 @@
      * @param {module:api/HubsApi~getHubCallback} callback The callback function, accepting three arguments: error, data, response
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
+    this.getHubEndPoint ='/project/v1/hubs/{hub_id}' ;
     this.getHub = function(hubId, callback) {
       var postBody = null;
 
@@ -98,11 +99,11 @@
       var returnType = null;
 
       return this.apiClient.callApi(
-        '/project/v1/hubs/{hub_id}', 'GET',
+        this.getHubEndPoint, 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the getHubProjects operation.
@@ -122,6 +123,7 @@
      * data is of type: {@link Object}
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
+    this.getHubProjectsEndPoint ='/project/v1/hubs/{hub_id}/projects' ;
     this.getHubProjects = function(hubId, opts, callback) {
       opts = opts || {};
       var postBody = null;
@@ -150,11 +152,11 @@
       var returnType = Object;
 
       return this.apiClient.callApi(
-        '/project/v1/hubs/{hub_id}/projects', 'GET',
+        this.getHubProjectsEndPoint, 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the getHubs operation.
@@ -173,6 +175,7 @@
      * data is of type: {@link Object}
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
+    this.getHubsEndPoint ='/project/v1/hubs' ;
     this.getHubs = function(opts, callback) {
       opts = opts || {};
       var postBody = null;
@@ -195,11 +198,11 @@
       var returnType = Object;
 
       return this.apiClient.callApi(
-        '/project/v1/hubs', 'GET',
+        this.getHubsEndPoint, 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
   };
 
   return exports;

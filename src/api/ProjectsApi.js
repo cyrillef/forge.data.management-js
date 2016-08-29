@@ -74,6 +74,7 @@
      * @param {module:api/ProjectsApi~getProjectCallback} callback The callback function, accepting three arguments: error, data, response
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
+    this.getProjectEndPoint ='/project/v1/hubs/{hub_id}/projects/{project_id}' ;
     this.getProject = function(hubId, projectId, callback) {
       var postBody = null;
 
@@ -105,11 +106,11 @@
       var returnType = null;
 
       return this.apiClient.callApi(
-        '/project/v1/hubs/{hub_id}/projects/{project_id}', 'GET',
+        this.getProjectEndPoint, 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the getProjectHealth operation.
@@ -124,6 +125,7 @@
      * @param {module:api/ProjectsApi~getProjectHealthCallback} callback The callback function, accepting three arguments: error, data, response
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
+    this.getProjectHealthEndPoint ='/project/v1/health' ;
     this.getProjectHealth = function(callback) {
       var postBody = null;
 
@@ -143,11 +145,11 @@
       var returnType = null;
 
       return this.apiClient.callApi(
-        '/project/v1/health', 'GET',
+        this.getProjectHealthEndPoint, 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the getProjectHub operation.
@@ -164,6 +166,7 @@
      * @param {module:api/ProjectsApi~getProjectHubCallback} callback The callback function, accepting three arguments: error, data, response
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
+    this.getProjectHubEndPoint ='/project/v1/hubs/{hub_id}/projects/{project_id}/hub' ;
     this.getProjectHub = function(hubId, projectId, callback) {
       var postBody = null;
 
@@ -195,11 +198,11 @@
       var returnType = null;
 
       return this.apiClient.callApi(
-        '/project/v1/hubs/{hub_id}/projects/{project_id}/hub', 'GET',
+        this.getProjectHubEndPoint, 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the postItem operation.
@@ -217,6 +220,7 @@
      * data is of type: {@link Object}
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
+    this.postItemEndPoint ='/data/v1/projects/{project_id}/items' ;
     this.postItem = function(projectId, body, callback) {
       var postBody = body;
 
@@ -247,11 +251,11 @@
       var returnType = Object;
 
       return this.apiClient.callApi(
-        '/data/v1/projects/{project_id}/items', 'POST',
+        this.postItemEndPoint, 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the postStorage operation.
@@ -269,6 +273,7 @@
      * data is of type: {@link Object}
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
+    this.postStorageEndPoint ='/data/v1/projects/{project_id}/storage' ;
     this.postStorage = function(projectId, body, callback) {
       var postBody = body;
 
@@ -299,11 +304,11 @@
       var returnType = Object;
 
       return this.apiClient.callApi(
-        '/data/v1/projects/{project_id}/storage', 'POST',
+        this.postStorageEndPoint, 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the postVersion operation.
@@ -321,6 +326,7 @@
      * data is of type: {@link Object}
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
+    this.postVersionEndPoint ='/data/v1/projects/{project_id}/versions' ;
     this.postVersion = function(projectId, body, callback) {
       var postBody = body;
 
@@ -351,11 +357,11 @@
       var returnType = Object;
 
       return this.apiClient.callApi(
-        '/data/v1/projects/{project_id}/versions', 'POST',
+        this.postVersionEndPoint, 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
   };
 
   return exports;

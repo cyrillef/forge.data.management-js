@@ -75,6 +75,7 @@
      * data is of type: {@link Object}
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
+    this.getVersionEndPoint ='/data/v1/projects/{project_id}/versions/{version_id}' ;
     this.getVersion = function(projectId, versionId, callback) {
       var postBody = null;
 
@@ -106,11 +107,11 @@
       var returnType = Object;
 
       return this.apiClient.callApi(
-        '/data/v1/projects/{project_id}/versions/{version_id}', 'GET',
+        this.getVersionEndPoint, 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the getVersionItem operation.
@@ -128,6 +129,7 @@
      * data is of type: {@link Object}
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
+    this.getVersionItemEndPoint ='/data/v1/projects/{project_id}/versions/{version_id}/item' ;
     this.getVersionItem = function(projectId, versionId, callback) {
       var postBody = null;
 
@@ -159,11 +161,11 @@
       var returnType = Object;
 
       return this.apiClient.callApi(
-        '/data/v1/projects/{project_id}/versions/{version_id}/item', 'GET',
+        this.getVersionItemEndPoint, 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the getVersionRefs operation.
@@ -185,6 +187,7 @@
      * data is of type: {@link module:model/JsonApiCollection}
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/JsonApiCollection}
      */
+    this.getVersionRefsEndPoint ='/data/v1/projects/{project_id}/versions/{version_id}/refs' ;
     this.getVersionRefs = function(projectId, versionId, opts, callback) {
       opts = opts || {};
       var postBody = null;
@@ -220,11 +223,11 @@
       var returnType = JsonApiCollection;
 
       return this.apiClient.callApi(
-        '/data/v1/projects/{project_id}/versions/{version_id}/refs', 'GET',
+        this.getVersionRefsEndPoint, 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the getVersionRelationshipsRefs operation.
@@ -248,6 +251,7 @@
      * data is of type: {@link Object}
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
+    this.getVersionRelationshipsRefsEndPoint ='/data/v1/projects/{project_id}/versions/{version_id}/relationships/refs' ;
     this.getVersionRelationshipsRefs = function(projectId, versionId, opts, callback) {
       opts = opts || {};
       var postBody = null;
@@ -285,11 +289,11 @@
       var returnType = Object;
 
       return this.apiClient.callApi(
-        '/data/v1/projects/{project_id}/versions/{version_id}/relationships/refs', 'GET',
+        this.getVersionRelationshipsRefsEndPoint, 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
 
     /**
      * Callback function to receive the result of the postVersionRelationshipsRef operation.
@@ -307,6 +311,7 @@
      * @param {module:api/VersionsApi~postVersionRelationshipsRefCallback} callback The callback function, accepting three arguments: error, data, response
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
+    this.postVersionRelationshipsRefEndPoint ='/data/v1/projects/{project_id}/versions/{version_id}/relationships/refs' ;
     this.postVersionRelationshipsRef = function(projectId, versionId, body, callback) {
       var postBody = body;
 
@@ -343,11 +348,11 @@
       var returnType = null;
 
       return this.apiClient.callApi(
-        '/data/v1/projects/{project_id}/versions/{version_id}/relationships/refs', 'POST',
+        this.postVersionRelationshipsRefEndPoint, 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
-    }
+    };
   };
 
   return exports;
