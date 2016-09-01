@@ -29,18 +29,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient'], factory);
+    define(['ApiClient', 'model/HubResponse', 'model/ForbiddenResponse', 'model/NotFoundResponse', 'model/ProjectsResponse', 'model/HubsResponse'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'));
+    module.exports = factory(require('../ApiClient'), require('../model/HubResponse'), require('../model/ForbiddenResponse'), require('../model/NotFoundResponse'), require('../model/ProjectsResponse'), require('../model/HubsResponse'));
   } else {
     // Browser globals (root is window)
     if (!root.ForgeDataManagement) {
       root.ForgeDataManagement = {};
     }
-    root.ForgeDataManagement.HubsApi = factory(root.ForgeDataManagement.ApiClient);
+    root.ForgeDataManagement.HubsApi = factory(root.ForgeDataManagement.ApiClient, root.ForgeDataManagement.HubResponse, root.ForgeDataManagement.ForbiddenResponse, root.ForgeDataManagement.NotFoundResponse, root.ForgeDataManagement.ProjectsResponse, root.ForgeDataManagement.HubsResponse);
   }
-}(this, function(ApiClient) {
+}(this, function(ApiClient, HubResponse, ForbiddenResponse, NotFoundResponse, ProjectsResponse, HubsResponse) {
   'use strict';
 
   /**
@@ -63,7 +63,7 @@
      * Callback function to receive the result of the getHub operation.
      * @callback module:api/HubsApi~getHubCallback
      * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
+     * @param {module:model/HubResponse} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
@@ -71,7 +71,8 @@
      * Returns data on a specific &#x60;hub_id&#x60;. 
      * @param {String} hubId the &#x60;hub id&#x60; for the current operation
      * @param {module:api/HubsApi~getHubCallback} callback The callback function, accepting three arguments: error, data, response
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+     * data is of type: {@link module:model/HubResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/HubResponse}
      */
     this.getHubEndPoint ='/project/v1/hubs/{hub_id}' ;
     this.getHub = function(hubId, callback) {
@@ -96,7 +97,7 @@
       var authNames = ['oauth2_access_code'];
       var contentTypes = ['application/vnd.api+json'];
       var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = null;
+      var returnType = HubResponse;
 
       return this.apiClient.callApi(
         this.getHubEndPoint, 'GET',
@@ -109,7 +110,7 @@
      * Callback function to receive the result of the getHubProjects operation.
      * @callback module:api/HubsApi~getHubProjectsCallback
      * @param {String} error Error message, if any.
-     * @param {Object} data The data returned by the service call.
+     * @param {module:model/ProjectsResponse} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
@@ -120,8 +121,8 @@
      * @param {Array.<String>} opts.filterId filter by the &#x60;id&#x60; of the &#x60;ref&#x60; target
      * @param {Array.<String>} opts.filterExtensionType filter by the extension type
      * @param {module:api/HubsApi~getHubProjectsCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Object}
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
+     * data is of type: {@link module:model/ProjectsResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ProjectsResponse}
      */
     this.getHubProjectsEndPoint ='/project/v1/hubs/{hub_id}/projects' ;
     this.getHubProjects = function(hubId, opts, callback) {
@@ -138,8 +139,8 @@
         'hub_id': hubId
       };
       var queryParams = {
-        'filter[id]': this.apiClient.buildCollectionParam(opts['filterId'], 'multi'),
-        'filter[extension.type]': this.apiClient.buildCollectionParam(opts['filterExtensionType'], 'multi')
+        'filter[id]': this.apiClient.buildCollectionParam(opts['filterId'], 'csv'),
+        'filter[extension.type]': this.apiClient.buildCollectionParam(opts['filterExtensionType'], 'csv')
       };
       var headerParams = {
       };
@@ -149,7 +150,7 @@
       var authNames = ['oauth2_access_code'];
       var contentTypes = ['application/vnd.api+json'];
       var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = Object;
+      var returnType = ProjectsResponse;
 
       return this.apiClient.callApi(
         this.getHubProjectsEndPoint, 'GET',
@@ -162,7 +163,7 @@
      * Callback function to receive the result of the getHubs operation.
      * @callback module:api/HubsApi~getHubsCallback
      * @param {String} error Error message, if any.
-     * @param {Object} data The data returned by the service call.
+     * @param {module:model/HubsResponse} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
@@ -172,8 +173,8 @@
      * @param {Array.<String>} opts.filterId filter by the &#x60;id&#x60; of the &#x60;ref&#x60; target
      * @param {Array.<String>} opts.filterExtensionType filter by the extension type
      * @param {module:api/HubsApi~getHubsCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Object}
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
+     * data is of type: {@link module:model/HubsResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/HubsResponse}
      */
     this.getHubsEndPoint ='/project/v1/hubs' ;
     this.getHubs = function(opts, callback) {
@@ -184,8 +185,8 @@
       var pathParams = {
       };
       var queryParams = {
-        'filter[id]': this.apiClient.buildCollectionParam(opts['filterId'], 'multi'),
-        'filter[extension.type]': this.apiClient.buildCollectionParam(opts['filterExtensionType'], 'multi')
+        'filter[id]': this.apiClient.buildCollectionParam(opts['filterId'], 'csv'),
+        'filter[extension.type]': this.apiClient.buildCollectionParam(opts['filterExtensionType'], 'csv')
       };
       var headerParams = {
       };
@@ -195,7 +196,7 @@
       var authNames = ['oauth2_access_code'];
       var contentTypes = ['application/vnd.api+json'];
       var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = Object;
+      var returnType = HubsResponse;
 
       return this.apiClient.callApi(
         this.getHubsEndPoint, 'GET',

@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 <a name="getDataHealth"></a>
 # **getDataHealth**
-> getDataHealth()
+> HealthResponse getDataHealth()
 
 
 
@@ -32,7 +32,7 @@ var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 };
 apiInstance.getDataHealth(callback);
@@ -43,7 +43,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-null (empty response body)
+[**HealthResponse**](HealthResponse.md)
 
 ### Authorization
 
@@ -56,7 +56,7 @@ No authorization required
 
 <a name="getItem"></a>
 # **getItem**
-> Object getItem(projectIditemId)
+> ItemResponse getItem(projectIditemId)
 
 
 
@@ -97,7 +97,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**ItemResponse**](ItemResponse.md)
 
 ### Authorization
 
@@ -110,7 +110,7 @@ Name | Type | Description  | Notes
 
 <a name="getItemParentFolder"></a>
 # **getItemParentFolder**
-> getItemParentFolder(projectIditemId)
+> FolderResponse getItemParentFolder(projectIditemId)
 
 
 
@@ -136,7 +136,7 @@ var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 };
 apiInstance.getItemParentFolder(projectIditemId, callback);
@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-null (empty response body)
+[**FolderResponse**](FolderResponse.md)
 
 ### Authorization
 
@@ -226,7 +226,7 @@ Name | Type | Description  | Notes
 
 <a name="getItemRelationshipsRefs"></a>
 # **getItemRelationshipsRefs**
-> Object getItemRelationshipsRefs(projectIditemId, opts)
+> RefsResponse getItemRelationshipsRefs(projectIditemId, opts)
 
 
 
@@ -279,7 +279,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**RefsResponse**](RefsResponse.md)
 
 ### Authorization
 
@@ -292,7 +292,7 @@ Name | Type | Description  | Notes
 
 <a name="getItemTip"></a>
 # **getItemTip**
-> Object getItemTip(projectIditemId)
+> VersionResponse getItemTip(projectIditemId)
 
 
 
@@ -333,7 +333,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**VersionResponse**](VersionResponse.md)
 
 ### Authorization
 
@@ -346,7 +346,7 @@ Name | Type | Description  | Notes
 
 <a name="getItemVersions"></a>
 # **getItemVersions**
-> Object getItemVersions(projectIditemId, opts)
+> VersionsResponse getItemVersions(projectIditemId, opts)
 
 
 
@@ -401,7 +401,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**VersionsResponse**](VersionsResponse.md)
 
 ### Authorization
 

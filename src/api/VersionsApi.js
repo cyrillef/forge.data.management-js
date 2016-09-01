@@ -29,18 +29,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/JsonApiCollection', 'model/CreateRef'], factory);
+    define(['ApiClient', 'model/VersionResponse', 'model/BadInputResponse', 'model/ForbiddenResponse', 'model/NotFoundResponse', 'model/ItemResponse', 'model/JsonApiCollection', 'model/RefsResponse', 'model/CreateRef'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('../model/JsonApiCollection'), require('../model/CreateRef'));
+    module.exports = factory(require('../ApiClient'), require('../model/VersionResponse'), require('../model/BadInputResponse'), require('../model/ForbiddenResponse'), require('../model/NotFoundResponse'), require('../model/ItemResponse'), require('../model/JsonApiCollection'), require('../model/RefsResponse'), require('../model/CreateRef'));
   } else {
     // Browser globals (root is window)
     if (!root.ForgeDataManagement) {
       root.ForgeDataManagement = {};
     }
-    root.ForgeDataManagement.VersionsApi = factory(root.ForgeDataManagement.ApiClient, root.ForgeDataManagement.JsonApiCollection, root.ForgeDataManagement.CreateRef);
+    root.ForgeDataManagement.VersionsApi = factory(root.ForgeDataManagement.ApiClient, root.ForgeDataManagement.VersionResponse, root.ForgeDataManagement.BadInputResponse, root.ForgeDataManagement.ForbiddenResponse, root.ForgeDataManagement.NotFoundResponse, root.ForgeDataManagement.ItemResponse, root.ForgeDataManagement.JsonApiCollection, root.ForgeDataManagement.RefsResponse, root.ForgeDataManagement.CreateRef);
   }
-}(this, function(ApiClient, JsonApiCollection, CreateRef) {
+}(this, function(ApiClient, VersionResponse, BadInputResponse, ForbiddenResponse, NotFoundResponse, ItemResponse, JsonApiCollection, RefsResponse, CreateRef) {
   'use strict';
 
   /**
@@ -63,7 +63,7 @@
      * Callback function to receive the result of the getVersion operation.
      * @callback module:api/VersionsApi~getVersionCallback
      * @param {String} error Error message, if any.
-     * @param {Object} data The data returned by the service call.
+     * @param {module:model/VersionResponse} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
@@ -72,8 +72,8 @@
      * @param {String} projectId the &#x60;project id&#x60;
      * @param {String} versionId the &#x60;version id&#x60;
      * @param {module:api/VersionsApi~getVersionCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Object}
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
+     * data is of type: {@link module:model/VersionResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/VersionResponse}
      */
     this.getVersionEndPoint ='/data/v1/projects/{project_id}/versions/{version_id}' ;
     this.getVersion = function(projectId, versionId, callback) {
@@ -104,7 +104,7 @@
       var authNames = ['oauth2_access_code'];
       var contentTypes = ['application/vnd.api+json'];
       var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = Object;
+      var returnType = VersionResponse;
 
       return this.apiClient.callApi(
         this.getVersionEndPoint, 'GET',
@@ -117,7 +117,7 @@
      * Callback function to receive the result of the getVersionItem operation.
      * @callback module:api/VersionsApi~getVersionItemCallback
      * @param {String} error Error message, if any.
-     * @param {Object} data The data returned by the service call.
+     * @param {module:model/ItemResponse} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
@@ -126,8 +126,8 @@
      * @param {String} projectId the &#x60;project id&#x60;
      * @param {String} versionId the &#x60;version id&#x60;
      * @param {module:api/VersionsApi~getVersionItemCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Object}
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
+     * data is of type: {@link module:model/ItemResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ItemResponse}
      */
     this.getVersionItemEndPoint ='/data/v1/projects/{project_id}/versions/{version_id}/item' ;
     this.getVersionItem = function(projectId, versionId, callback) {
@@ -158,7 +158,7 @@
       var authNames = ['oauth2_access_code'];
       var contentTypes = ['application/vnd.api+json'];
       var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = Object;
+      var returnType = ItemResponse;
 
       return this.apiClient.callApi(
         this.getVersionItemEndPoint, 'GET',
@@ -208,9 +208,9 @@
         'version_id': versionId
       };
       var queryParams = {
-        'filter[type]': this.apiClient.buildCollectionParam(opts['filterType'], 'multi'),
-        'filter[id]': this.apiClient.buildCollectionParam(opts['filterId'], 'multi'),
-        'filter[extension.type]': this.apiClient.buildCollectionParam(opts['filterExtensionType'], 'multi')
+        'filter[type]': this.apiClient.buildCollectionParam(opts['filterType'], 'csv'),
+        'filter[id]': this.apiClient.buildCollectionParam(opts['filterId'], 'csv'),
+        'filter[extension.type]': this.apiClient.buildCollectionParam(opts['filterExtensionType'], 'csv')
       };
       var headerParams = {
       };
@@ -233,7 +233,7 @@
      * Callback function to receive the result of the getVersionRelationshipsRefs operation.
      * @callback module:api/VersionsApi~getVersionRelationshipsRefsCallback
      * @param {String} error Error message, if any.
-     * @param {Object} data The data returned by the service call.
+     * @param {module:model/RefsResponse} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
@@ -248,8 +248,8 @@
      * @param {module:model/String} opts.filterDirection filter by the direction of the reference
      * @param {Array.<String>} opts.filterExtensionType filter by the extension type
      * @param {module:api/VersionsApi~getVersionRelationshipsRefsCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Object}
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
+     * data is of type: {@link module:model/RefsResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/RefsResponse}
      */
     this.getVersionRelationshipsRefsEndPoint ='/data/v1/projects/{project_id}/versions/{version_id}/relationships/refs' ;
     this.getVersionRelationshipsRefs = function(projectId, versionId, opts, callback) {
@@ -272,11 +272,11 @@
         'version_id': versionId
       };
       var queryParams = {
-        'filter[type]': this.apiClient.buildCollectionParam(opts['filterType'], 'multi'),
-        'filter[id]': this.apiClient.buildCollectionParam(opts['filterId'], 'multi'),
-        'filter[refType]': this.apiClient.buildCollectionParam(opts['filterRefType'], 'multi'),
+        'filter[type]': this.apiClient.buildCollectionParam(opts['filterType'], 'csv'),
+        'filter[id]': this.apiClient.buildCollectionParam(opts['filterId'], 'csv'),
+        'filter[refType]': this.apiClient.buildCollectionParam(opts['filterRefType'], 'csv'),
         'filter[direction]': opts['filterDirection'],
-        'filter[extension.type]': this.apiClient.buildCollectionParam(opts['filterExtensionType'], 'multi')
+        'filter[extension.type]': this.apiClient.buildCollectionParam(opts['filterExtensionType'], 'csv')
       };
       var headerParams = {
       };
@@ -286,7 +286,7 @@
       var authNames = ['oauth2_access_code'];
       var contentTypes = ['application/vnd.api+json'];
       var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = Object;
+      var returnType = RefsResponse;
 
       return this.apiClient.callApi(
         this.getVersionRelationshipsRefsEndPoint, 'GET',

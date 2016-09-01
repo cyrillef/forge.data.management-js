@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 <a name="getVersion"></a>
 # **getVersion**
-> Object getVersion(projectIdversionId, )
+> VersionResponse getVersion(projectIdversionId, )
 
 
 
@@ -54,7 +54,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**VersionResponse**](VersionResponse.md)
 
 ### Authorization
 
@@ -67,7 +67,7 @@ Name | Type | Description  | Notes
 
 <a name="getVersionItem"></a>
 # **getVersionItem**
-> Object getVersionItem(projectIdversionId, )
+> ItemResponse getVersionItem(projectIdversionId, )
 
 
 
@@ -108,7 +108,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**ItemResponse**](ItemResponse.md)
 
 ### Authorization
 
@@ -183,7 +183,7 @@ Name | Type | Description  | Notes
 
 <a name="getVersionRelationshipsRefs"></a>
 # **getVersionRelationshipsRefs**
-> Object getVersionRelationshipsRefs(projectIdversionId, , opts)
+> RefsResponse getVersionRelationshipsRefs(projectIdversionId, , opts)
 
 
 
@@ -236,7 +236,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**RefsResponse**](RefsResponse.md)
 
 ### Authorization
 

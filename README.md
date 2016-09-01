@@ -67,7 +67,7 @@ var callback =function (error, data, response) {
   if ( error ) {
     console.error (error) ;
   } else {
-    console.log ('API called successfully.') ;
+    console.log ('API called successfully. Returned data: ' + data) ;
   }
 };
 api.getFolder(projectIdfolderId, , callback) ;
@@ -91,8 +91,8 @@ var projectId ="projectId_example" ; // {String} the `project id`
 var folderId ="folderId_example" ; // {String} the `folder id`
 
 
-api.getFolder(projectIdfolderId, ).then (function () {
-  console.log ('API called successfully.') ;
+api.getFolder(projectIdfolderId, ).then (function (data) {
+  console.log ('API called successfully. Returned data: ' + data) ;
 }, function (error) {
   console.error (error) ;
 }) ;
@@ -139,17 +139,26 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [ForgeDataManagement.BadInputResponse](docs/BadInputResponse.md)
  - [ForgeDataManagement.BaseAttributesCreatedUpdated](docs/BaseAttributesCreatedUpdated.md)
  - [ForgeDataManagement.BaseAttributesCreatedUpdatedAttributes](docs/BaseAttributesCreatedUpdatedAttributes.md)
  - [ForgeDataManagement.BaseAttributesExtensionObject](docs/BaseAttributesExtensionObject.md)
+ - [ForgeDataManagement.ConflictResponse](docs/ConflictResponse.md)
  - [ForgeDataManagement.CreateItem](docs/CreateItem.md)
  - [ForgeDataManagement.CreateRef](docs/CreateRef.md)
  - [ForgeDataManagement.CreateStorage](docs/CreateStorage.md)
  - [ForgeDataManagement.CreateVersion](docs/CreateVersion.md)
  - [ForgeDataManagement.Folder](docs/Folder.md)
+ - [ForgeDataManagement.FolderResponse](docs/FolderResponse.md)
+ - [ForgeDataManagement.ForbiddenResponse](docs/ForbiddenResponse.md)
  - [ForgeDataManagement.Health](docs/Health.md)
+ - [ForgeDataManagement.HealthResponse](docs/HealthResponse.md)
  - [ForgeDataManagement.Hub](docs/Hub.md)
+ - [ForgeDataManagement.HubResponse](docs/HubResponse.md)
+ - [ForgeDataManagement.HubsResponse](docs/HubsResponse.md)
  - [ForgeDataManagement.Item](docs/Item.md)
+ - [ForgeDataManagement.ItemCreatedResponse](docs/ItemCreatedResponse.md)
+ - [ForgeDataManagement.ItemResponse](docs/ItemResponse.md)
  - [ForgeDataManagement.JsonApiAttributes](docs/JsonApiAttributes.md)
  - [ForgeDataManagement.JsonApiCollection](docs/JsonApiCollection.md)
  - [ForgeDataManagement.JsonApiDocument](docs/JsonApiDocument.md)
@@ -172,10 +181,18 @@ Class | Method | HTTP request | Description
  - [ForgeDataManagement.JsonApiTypeId](docs/JsonApiTypeId.md)
  - [ForgeDataManagement.JsonApiVersion](docs/JsonApiVersion.md)
  - [ForgeDataManagement.JsonApiVersionJsonapi](docs/JsonApiVersionJsonapi.md)
+ - [ForgeDataManagement.NotFoundResponse](docs/NotFoundResponse.md)
  - [ForgeDataManagement.Project](docs/Project.md)
+ - [ForgeDataManagement.ProjectResponse](docs/ProjectResponse.md)
+ - [ForgeDataManagement.ProjectsResponse](docs/ProjectsResponse.md)
+ - [ForgeDataManagement.RefsResponse](docs/RefsResponse.md)
  - [ForgeDataManagement.RelRef](docs/RelRef.md)
  - [ForgeDataManagement.Storage](docs/Storage.md)
+ - [ForgeDataManagement.StorageCreatedResponse](docs/StorageCreatedResponse.md)
  - [ForgeDataManagement.Version](docs/Version.md)
+ - [ForgeDataManagement.VersionCreatedResponse](docs/VersionCreatedResponse.md)
+ - [ForgeDataManagement.VersionResponse](docs/VersionResponse.md)
+ - [ForgeDataManagement.VersionsResponse](docs/VersionsResponse.md)
 
 
 

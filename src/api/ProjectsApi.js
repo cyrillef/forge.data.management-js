@@ -29,18 +29,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/CreateItem', 'model/CreateStorage', 'model/CreateVersion'], factory);
+    define(['ApiClient', 'model/ProjectResponse', 'model/ForbiddenResponse', 'model/NotFoundResponse', 'model/HealthResponse', 'model/HubResponse', 'model/BadInputResponse', 'model/CreateItem', 'model/ConflictResponse', 'model/ItemCreatedResponse', 'model/StorageCreatedResponse', 'model/CreateStorage', 'model/VersionCreatedResponse', 'model/CreateVersion'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('../model/CreateItem'), require('../model/CreateStorage'), require('../model/CreateVersion'));
+    module.exports = factory(require('../ApiClient'), require('../model/ProjectResponse'), require('../model/ForbiddenResponse'), require('../model/NotFoundResponse'), require('../model/HealthResponse'), require('../model/HubResponse'), require('../model/BadInputResponse'), require('../model/CreateItem'), require('../model/ConflictResponse'), require('../model/ItemCreatedResponse'), require('../model/StorageCreatedResponse'), require('../model/CreateStorage'), require('../model/VersionCreatedResponse'), require('../model/CreateVersion'));
   } else {
     // Browser globals (root is window)
     if (!root.ForgeDataManagement) {
       root.ForgeDataManagement = {};
     }
-    root.ForgeDataManagement.ProjectsApi = factory(root.ForgeDataManagement.ApiClient, root.ForgeDataManagement.CreateItem, root.ForgeDataManagement.CreateStorage, root.ForgeDataManagement.CreateVersion);
+    root.ForgeDataManagement.ProjectsApi = factory(root.ForgeDataManagement.ApiClient, root.ForgeDataManagement.ProjectResponse, root.ForgeDataManagement.ForbiddenResponse, root.ForgeDataManagement.NotFoundResponse, root.ForgeDataManagement.HealthResponse, root.ForgeDataManagement.HubResponse, root.ForgeDataManagement.BadInputResponse, root.ForgeDataManagement.CreateItem, root.ForgeDataManagement.ConflictResponse, root.ForgeDataManagement.ItemCreatedResponse, root.ForgeDataManagement.StorageCreatedResponse, root.ForgeDataManagement.CreateStorage, root.ForgeDataManagement.VersionCreatedResponse, root.ForgeDataManagement.CreateVersion);
   }
-}(this, function(ApiClient, CreateItem, CreateStorage, CreateVersion) {
+}(this, function(ApiClient, ProjectResponse, ForbiddenResponse, NotFoundResponse, HealthResponse, HubResponse, BadInputResponse, CreateItem, ConflictResponse, ItemCreatedResponse, StorageCreatedResponse, CreateStorage, VersionCreatedResponse, CreateVersion) {
   'use strict';
 
   /**
@@ -63,7 +63,7 @@
      * Callback function to receive the result of the getProject operation.
      * @callback module:api/ProjectsApi~getProjectCallback
      * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
+     * @param {module:model/ProjectResponse} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
@@ -72,7 +72,8 @@
      * @param {String} hubId the &#x60;hub id&#x60; for the current operation
      * @param {String} projectId the &#x60;project id&#x60;
      * @param {module:api/ProjectsApi~getProjectCallback} callback The callback function, accepting three arguments: error, data, response
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+     * data is of type: {@link module:model/ProjectResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ProjectResponse}
      */
     this.getProjectEndPoint ='/project/v1/hubs/{hub_id}/projects/{project_id}' ;
     this.getProject = function(hubId, projectId, callback) {
@@ -103,7 +104,7 @@
       var authNames = ['oauth2_access_code'];
       var contentTypes = ['application/vnd.api+json'];
       var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = null;
+      var returnType = ProjectResponse;
 
       return this.apiClient.callApi(
         this.getProjectEndPoint, 'GET',
@@ -116,14 +117,15 @@
      * Callback function to receive the result of the getProjectHealth operation.
      * @callback module:api/ProjectsApi~getProjectHealthCallback
      * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
+     * @param {module:model/HealthResponse} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
     /**
      * Returns health information for the &#x60;project&#x60; domain. The health check assesses the current working status of the &#39;project&#39; domain service. 
      * @param {module:api/ProjectsApi~getProjectHealthCallback} callback The callback function, accepting three arguments: error, data, response
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+     * data is of type: {@link module:model/HealthResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/HealthResponse}
      */
     this.getProjectHealthEndPoint ='/project/v1/health' ;
     this.getProjectHealth = function(callback) {
@@ -142,7 +144,7 @@
       var authNames = [];
       var contentTypes = ['application/vnd.api+json'];
       var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = null;
+      var returnType = HealthResponse;
 
       return this.apiClient.callApi(
         this.getProjectHealthEndPoint, 'GET',
@@ -155,7 +157,7 @@
      * Callback function to receive the result of the getProjectHub operation.
      * @callback module:api/ProjectsApi~getProjectHubCallback
      * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
+     * @param {module:model/HubResponse} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
@@ -164,7 +166,8 @@
      * @param {String} hubId the &#x60;hub id&#x60; for the current operation
      * @param {String} projectId the &#x60;project id&#x60;
      * @param {module:api/ProjectsApi~getProjectHubCallback} callback The callback function, accepting three arguments: error, data, response
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+     * data is of type: {@link module:model/HubResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/HubResponse}
      */
     this.getProjectHubEndPoint ='/project/v1/hubs/{hub_id}/projects/{project_id}/hub' ;
     this.getProjectHub = function(hubId, projectId, callback) {
@@ -195,7 +198,7 @@
       var authNames = ['oauth2_access_code'];
       var contentTypes = ['application/vnd.api+json'];
       var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = null;
+      var returnType = HubResponse;
 
       return this.apiClient.callApi(
         this.getProjectHubEndPoint, 'GET',
@@ -208,7 +211,7 @@
      * Callback function to receive the result of the postItem operation.
      * @callback module:api/ProjectsApi~postItemCallback
      * @param {String} error Error message, if any.
-     * @param {Object} data The data returned by the service call.
+     * @param {module:model/ItemCreatedResponse} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
@@ -217,8 +220,8 @@
      * @param {String} projectId the &#x60;project id&#x60;
      * @param {module:model/CreateItem} body describe the item to be created
      * @param {module:api/ProjectsApi~postItemCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Object}
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
+     * data is of type: {@link module:model/ItemCreatedResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ItemCreatedResponse}
      */
     this.postItemEndPoint ='/data/v1/projects/{project_id}/items' ;
     this.postItem = function(projectId, body, callback) {
@@ -248,7 +251,7 @@
       var authNames = ['oauth2_access_code'];
       var contentTypes = ['application/vnd.api+json'];
       var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = Object;
+      var returnType = ItemCreatedResponse;
 
       return this.apiClient.callApi(
         this.postItemEndPoint, 'POST',
@@ -261,7 +264,7 @@
      * Callback function to receive the result of the postStorage operation.
      * @callback module:api/ProjectsApi~postStorageCallback
      * @param {String} error Error message, if any.
-     * @param {Object} data The data returned by the service call.
+     * @param {module:model/StorageCreatedResponse} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
@@ -270,8 +273,8 @@
      * @param {String} projectId the &#x60;project id&#x60;
      * @param {module:model/CreateStorage} body describe the file the storage is created for
      * @param {module:api/ProjectsApi~postStorageCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Object}
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
+     * data is of type: {@link module:model/StorageCreatedResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/StorageCreatedResponse}
      */
     this.postStorageEndPoint ='/data/v1/projects/{project_id}/storage' ;
     this.postStorage = function(projectId, body, callback) {
@@ -301,7 +304,7 @@
       var authNames = ['oauth2_access_code'];
       var contentTypes = ['application/vnd.api+json'];
       var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = Object;
+      var returnType = StorageCreatedResponse;
 
       return this.apiClient.callApi(
         this.postStorageEndPoint, 'POST',
@@ -314,7 +317,7 @@
      * Callback function to receive the result of the postVersion operation.
      * @callback module:api/ProjectsApi~postVersionCallback
      * @param {String} error Error message, if any.
-     * @param {Object} data The data returned by the service call.
+     * @param {module:model/VersionCreatedResponse} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
@@ -323,8 +326,8 @@
      * @param {String} projectId the &#x60;project id&#x60;
      * @param {module:model/CreateVersion} body describe the version to be created
      * @param {module:api/ProjectsApi~postVersionCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Object}
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
+     * data is of type: {@link module:model/VersionCreatedResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/VersionCreatedResponse}
      */
     this.postVersionEndPoint ='/data/v1/projects/{project_id}/versions' ;
     this.postVersion = function(projectId, body, callback) {
@@ -354,7 +357,7 @@
       var authNames = ['oauth2_access_code'];
       var contentTypes = ['application/vnd.api+json'];
       var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = Object;
+      var returnType = VersionCreatedResponse;
 
       return this.apiClient.callApi(
         this.postVersionEndPoint, 'POST',

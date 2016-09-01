@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 <a name="getHub"></a>
 # **getHub**
-> getHub(hubId, )
+> HubResponse getHub(hubId, )
 
 
 
@@ -35,7 +35,7 @@ var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 };
 apiInstance.getHub(hubId, , callback);
@@ -49,7 +49,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-null (empty response body)
+[**HubResponse**](HubResponse.md)
 
 ### Authorization
 
@@ -62,7 +62,7 @@ null (empty response body)
 
 <a name="getHubProjects"></a>
 # **getHubProjects**
-> Object getHubProjects(hubId, , opts)
+> ProjectsResponse getHubProjects(hubId, , opts)
 
 
 
@@ -106,7 +106,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**ProjectsResponse**](ProjectsResponse.md)
 
 ### Authorization
 
@@ -119,7 +119,7 @@ Name | Type | Description  | Notes
 
 <a name="getHubs"></a>
 # **getHubs**
-> Object getHubs(opts)
+> HubsResponse getHubs(opts)
 
 
 
@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**HubsResponse**](HubsResponse.md)
 
 ### Authorization
 

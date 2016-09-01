@@ -29,12 +29,12 @@
 (function(factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/BaseAttributesCreatedUpdated', 'model/BaseAttributesCreatedUpdatedAttributes', 'model/BaseAttributesExtensionObject', 'model/CreateItem', 'model/CreateRef', 'model/CreateStorage', 'model/CreateVersion', 'model/Folder', 'model/Health', 'model/Hub', 'model/Item', 'model/JsonApiAttributes', 'model/JsonApiCollection', 'model/JsonApiDocument', 'model/JsonApiDocumentBase', 'model/JsonApiError', 'model/JsonApiLink', 'model/JsonApiLinks', 'model/JsonApiLinksPaging', 'model/JsonApiLinksRelated', 'model/JsonApiLinksSelf', 'model/JsonApiMeta', 'model/JsonApiMetaLink', 'model/JsonApiRelationships', 'model/JsonApiRelationshipsLinksExternalResource', 'model/JsonApiRelationshipsLinksInternal', 'model/JsonApiRelationshipsLinksInternalResource', 'model/JsonApiRelationshipsLinksRefs', 'model/JsonApiRelationshipsLinksRefsLinks', 'model/JsonApiResource', 'model/JsonApiTypeId', 'model/JsonApiVersion', 'model/JsonApiVersionJsonapi', 'model/Project', 'model/RelRef', 'model/Storage', 'model/Version', 'api/FoldersApi', 'api/HubsApi', 'api/ItemsApi', 'api/ProjectsApi', 'api/VersionsApi'], factory);
+    define(['ApiClient', 'model/BadInputResponse', 'model/BaseAttributesCreatedUpdated', 'model/BaseAttributesCreatedUpdatedAttributes', 'model/BaseAttributesExtensionObject', 'model/ConflictResponse', 'model/CreateItem', 'model/CreateRef', 'model/CreateStorage', 'model/CreateVersion', 'model/Folder', 'model/FolderResponse', 'model/ForbiddenResponse', 'model/Health', 'model/HealthResponse', 'model/Hub', 'model/HubResponse', 'model/HubsResponse', 'model/Item', 'model/ItemCreatedResponse', 'model/ItemResponse', 'model/JsonApiAttributes', 'model/JsonApiCollection', 'model/JsonApiDocument', 'model/JsonApiDocumentBase', 'model/JsonApiError', 'model/JsonApiLink', 'model/JsonApiLinks', 'model/JsonApiLinksPaging', 'model/JsonApiLinksRelated', 'model/JsonApiLinksSelf', 'model/JsonApiMeta', 'model/JsonApiMetaLink', 'model/JsonApiRelationships', 'model/JsonApiRelationshipsLinksExternalResource', 'model/JsonApiRelationshipsLinksInternal', 'model/JsonApiRelationshipsLinksInternalResource', 'model/JsonApiRelationshipsLinksRefs', 'model/JsonApiRelationshipsLinksRefsLinks', 'model/JsonApiResource', 'model/JsonApiTypeId', 'model/JsonApiVersion', 'model/JsonApiVersionJsonapi', 'model/NotFoundResponse', 'model/Project', 'model/ProjectResponse', 'model/ProjectsResponse', 'model/RefsResponse', 'model/RelRef', 'model/Storage', 'model/StorageCreatedResponse', 'model/Version', 'model/VersionCreatedResponse', 'model/VersionResponse', 'model/VersionsResponse', 'api/FoldersApi', 'api/HubsApi', 'api/ItemsApi', 'api/ProjectsApi', 'api/VersionsApi'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('./ApiClient'), require('./model/BaseAttributesCreatedUpdated'), require('./model/BaseAttributesCreatedUpdatedAttributes'), require('./model/BaseAttributesExtensionObject'), require('./model/CreateItem'), require('./model/CreateRef'), require('./model/CreateStorage'), require('./model/CreateVersion'), require('./model/Folder'), require('./model/Health'), require('./model/Hub'), require('./model/Item'), require('./model/JsonApiAttributes'), require('./model/JsonApiCollection'), require('./model/JsonApiDocument'), require('./model/JsonApiDocumentBase'), require('./model/JsonApiError'), require('./model/JsonApiLink'), require('./model/JsonApiLinks'), require('./model/JsonApiLinksPaging'), require('./model/JsonApiLinksRelated'), require('./model/JsonApiLinksSelf'), require('./model/JsonApiMeta'), require('./model/JsonApiMetaLink'), require('./model/JsonApiRelationships'), require('./model/JsonApiRelationshipsLinksExternalResource'), require('./model/JsonApiRelationshipsLinksInternal'), require('./model/JsonApiRelationshipsLinksInternalResource'), require('./model/JsonApiRelationshipsLinksRefs'), require('./model/JsonApiRelationshipsLinksRefsLinks'), require('./model/JsonApiResource'), require('./model/JsonApiTypeId'), require('./model/JsonApiVersion'), require('./model/JsonApiVersionJsonapi'), require('./model/Project'), require('./model/RelRef'), require('./model/Storage'), require('./model/Version'), require('./api/FoldersApi'), require('./api/HubsApi'), require('./api/ItemsApi'), require('./api/ProjectsApi'), require('./api/VersionsApi'));
+    module.exports = factory(require('./ApiClient'), require('./model/BadInputResponse'), require('./model/BaseAttributesCreatedUpdated'), require('./model/BaseAttributesCreatedUpdatedAttributes'), require('./model/BaseAttributesExtensionObject'), require('./model/ConflictResponse'), require('./model/CreateItem'), require('./model/CreateRef'), require('./model/CreateStorage'), require('./model/CreateVersion'), require('./model/Folder'), require('./model/FolderResponse'), require('./model/ForbiddenResponse'), require('./model/Health'), require('./model/HealthResponse'), require('./model/Hub'), require('./model/HubResponse'), require('./model/HubsResponse'), require('./model/Item'), require('./model/ItemCreatedResponse'), require('./model/ItemResponse'), require('./model/JsonApiAttributes'), require('./model/JsonApiCollection'), require('./model/JsonApiDocument'), require('./model/JsonApiDocumentBase'), require('./model/JsonApiError'), require('./model/JsonApiLink'), require('./model/JsonApiLinks'), require('./model/JsonApiLinksPaging'), require('./model/JsonApiLinksRelated'), require('./model/JsonApiLinksSelf'), require('./model/JsonApiMeta'), require('./model/JsonApiMetaLink'), require('./model/JsonApiRelationships'), require('./model/JsonApiRelationshipsLinksExternalResource'), require('./model/JsonApiRelationshipsLinksInternal'), require('./model/JsonApiRelationshipsLinksInternalResource'), require('./model/JsonApiRelationshipsLinksRefs'), require('./model/JsonApiRelationshipsLinksRefsLinks'), require('./model/JsonApiResource'), require('./model/JsonApiTypeId'), require('./model/JsonApiVersion'), require('./model/JsonApiVersionJsonapi'), require('./model/NotFoundResponse'), require('./model/Project'), require('./model/ProjectResponse'), require('./model/ProjectsResponse'), require('./model/RefsResponse'), require('./model/RelRef'), require('./model/Storage'), require('./model/StorageCreatedResponse'), require('./model/Version'), require('./model/VersionCreatedResponse'), require('./model/VersionResponse'), require('./model/VersionsResponse'), require('./api/FoldersApi'), require('./api/HubsApi'), require('./api/ItemsApi'), require('./api/ProjectsApi'), require('./api/VersionsApi'));
   }
-}(function(ApiClient, BaseAttributesCreatedUpdated, BaseAttributesCreatedUpdatedAttributes, BaseAttributesExtensionObject, CreateItem, CreateRef, CreateStorage, CreateVersion, Folder, Health, Hub, Item, JsonApiAttributes, JsonApiCollection, JsonApiDocument, JsonApiDocumentBase, JsonApiError, JsonApiLink, JsonApiLinks, JsonApiLinksPaging, JsonApiLinksRelated, JsonApiLinksSelf, JsonApiMeta, JsonApiMetaLink, JsonApiRelationships, JsonApiRelationshipsLinksExternalResource, JsonApiRelationshipsLinksInternal, JsonApiRelationshipsLinksInternalResource, JsonApiRelationshipsLinksRefs, JsonApiRelationshipsLinksRefsLinks, JsonApiResource, JsonApiTypeId, JsonApiVersion, JsonApiVersionJsonapi, Project, RelRef, Storage, Version, FoldersApi, HubsApi, ItemsApi, ProjectsApi, VersionsApi) {
+}(function(ApiClient, BadInputResponse, BaseAttributesCreatedUpdated, BaseAttributesCreatedUpdatedAttributes, BaseAttributesExtensionObject, ConflictResponse, CreateItem, CreateRef, CreateStorage, CreateVersion, Folder, FolderResponse, ForbiddenResponse, Health, HealthResponse, Hub, HubResponse, HubsResponse, Item, ItemCreatedResponse, ItemResponse, JsonApiAttributes, JsonApiCollection, JsonApiDocument, JsonApiDocumentBase, JsonApiError, JsonApiLink, JsonApiLinks, JsonApiLinksPaging, JsonApiLinksRelated, JsonApiLinksSelf, JsonApiMeta, JsonApiMetaLink, JsonApiRelationships, JsonApiRelationshipsLinksExternalResource, JsonApiRelationshipsLinksInternal, JsonApiRelationshipsLinksInternalResource, JsonApiRelationshipsLinksRefs, JsonApiRelationshipsLinksRefsLinks, JsonApiResource, JsonApiTypeId, JsonApiVersion, JsonApiVersionJsonapi, NotFoundResponse, Project, ProjectResponse, ProjectsResponse, RefsResponse, RelRef, Storage, StorageCreatedResponse, Version, VersionCreatedResponse, VersionResponse, VersionsResponse, FoldersApi, HubsApi, ItemsApi, ProjectsApi, VersionsApi) {
   'use strict';
 
   /**
@@ -74,6 +74,11 @@
      */
     ApiClient: ApiClient,
     /**
+     * The BadInputResponse model constructor.
+     * @property {module:model/BadInputResponse}
+     */
+    BadInputResponse: BadInputResponse,
+    /**
      * The BaseAttributesCreatedUpdated model constructor.
      * @property {module:model/BaseAttributesCreatedUpdated}
      */
@@ -88,6 +93,11 @@
      * @property {module:model/BaseAttributesExtensionObject}
      */
     BaseAttributesExtensionObject: BaseAttributesExtensionObject,
+    /**
+     * The ConflictResponse model constructor.
+     * @property {module:model/ConflictResponse}
+     */
+    ConflictResponse: ConflictResponse,
     /**
      * The CreateItem model constructor.
      * @property {module:model/CreateItem}
@@ -114,20 +124,55 @@
      */
     Folder: Folder,
     /**
+     * The FolderResponse model constructor.
+     * @property {module:model/FolderResponse}
+     */
+    FolderResponse: FolderResponse,
+    /**
+     * The ForbiddenResponse model constructor.
+     * @property {module:model/ForbiddenResponse}
+     */
+    ForbiddenResponse: ForbiddenResponse,
+    /**
      * The Health model constructor.
      * @property {module:model/Health}
      */
     Health: Health,
+    /**
+     * The HealthResponse model constructor.
+     * @property {module:model/HealthResponse}
+     */
+    HealthResponse: HealthResponse,
     /**
      * The Hub model constructor.
      * @property {module:model/Hub}
      */
     Hub: Hub,
     /**
+     * The HubResponse model constructor.
+     * @property {module:model/HubResponse}
+     */
+    HubResponse: HubResponse,
+    /**
+     * The HubsResponse model constructor.
+     * @property {module:model/HubsResponse}
+     */
+    HubsResponse: HubsResponse,
+    /**
      * The Item model constructor.
      * @property {module:model/Item}
      */
     Item: Item,
+    /**
+     * The ItemCreatedResponse model constructor.
+     * @property {module:model/ItemCreatedResponse}
+     */
+    ItemCreatedResponse: ItemCreatedResponse,
+    /**
+     * The ItemResponse model constructor.
+     * @property {module:model/ItemResponse}
+     */
+    ItemResponse: ItemResponse,
     /**
      * The JsonApiAttributes model constructor.
      * @property {module:model/JsonApiAttributes}
@@ -239,10 +284,30 @@
      */
     JsonApiVersionJsonapi: JsonApiVersionJsonapi,
     /**
+     * The NotFoundResponse model constructor.
+     * @property {module:model/NotFoundResponse}
+     */
+    NotFoundResponse: NotFoundResponse,
+    /**
      * The Project model constructor.
      * @property {module:model/Project}
      */
     Project: Project,
+    /**
+     * The ProjectResponse model constructor.
+     * @property {module:model/ProjectResponse}
+     */
+    ProjectResponse: ProjectResponse,
+    /**
+     * The ProjectsResponse model constructor.
+     * @property {module:model/ProjectsResponse}
+     */
+    ProjectsResponse: ProjectsResponse,
+    /**
+     * The RefsResponse model constructor.
+     * @property {module:model/RefsResponse}
+     */
+    RefsResponse: RefsResponse,
     /**
      * The RelRef model constructor.
      * @property {module:model/RelRef}
@@ -254,10 +319,30 @@
      */
     Storage: Storage,
     /**
+     * The StorageCreatedResponse model constructor.
+     * @property {module:model/StorageCreatedResponse}
+     */
+    StorageCreatedResponse: StorageCreatedResponse,
+    /**
      * The Version model constructor.
      * @property {module:model/Version}
      */
     Version: Version,
+    /**
+     * The VersionCreatedResponse model constructor.
+     * @property {module:model/VersionCreatedResponse}
+     */
+    VersionCreatedResponse: VersionCreatedResponse,
+    /**
+     * The VersionResponse model constructor.
+     * @property {module:model/VersionResponse}
+     */
+    VersionResponse: VersionResponse,
+    /**
+     * The VersionsResponse model constructor.
+     * @property {module:model/VersionsResponse}
+     */
+    VersionsResponse: VersionsResponse,
     /**
      * The FoldersApi service constructor.
      * @property {module:api/FoldersApi}

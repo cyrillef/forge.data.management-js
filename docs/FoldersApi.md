@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 <a name="getFolder"></a>
 # **getFolder**
-> getFolder(projectIdfolderId, )
+> FolderResponse getFolder(projectIdfolderId, )
 
 
 
@@ -40,7 +40,7 @@ var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 };
 apiInstance.getFolder(projectIdfolderId, , callback);
@@ -55,7 +55,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-null (empty response body)
+[**FolderResponse**](FolderResponse.md)
 
 ### Authorization
 
@@ -134,7 +134,7 @@ Name | Type | Description  | Notes
 
 <a name="getFolderParent"></a>
 # **getFolderParent**
-> getFolderParent(projectIdfolderId, )
+> FolderResponse getFolderParent(projectIdfolderId, )
 
 
 
@@ -160,7 +160,7 @@ var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 };
 apiInstance.getFolderParent(projectIdfolderId, , callback);
@@ -175,7 +175,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-null (empty response body)
+[**FolderResponse**](FolderResponse.md)
 
 ### Authorization
 
@@ -250,7 +250,7 @@ Name | Type | Description  | Notes
 
 <a name="getFolderRelationshipsRefs"></a>
 # **getFolderRelationshipsRefs**
-> Object getFolderRelationshipsRefs(projectIdfolderId, , opts)
+> RefsResponse getFolderRelationshipsRefs(projectIdfolderId, , opts)
 
 
 
@@ -303,7 +303,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**RefsResponse**](RefsResponse.md)
 
 ### Authorization
 

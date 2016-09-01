@@ -29,18 +29,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/JsonApiCollection', 'model/CreateRef'], factory);
+    define(['ApiClient', 'model/BadInputResponse', 'model/ForbiddenResponse', 'model/FolderResponse', 'model/NotFoundResponse', 'model/JsonApiCollection', 'model/RefsResponse', 'model/CreateRef'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('../model/JsonApiCollection'), require('../model/CreateRef'));
+    module.exports = factory(require('../ApiClient'), require('../model/BadInputResponse'), require('../model/ForbiddenResponse'), require('../model/FolderResponse'), require('../model/NotFoundResponse'), require('../model/JsonApiCollection'), require('../model/RefsResponse'), require('../model/CreateRef'));
   } else {
     // Browser globals (root is window)
     if (!root.ForgeDataManagement) {
       root.ForgeDataManagement = {};
     }
-    root.ForgeDataManagement.FoldersApi = factory(root.ForgeDataManagement.ApiClient, root.ForgeDataManagement.JsonApiCollection, root.ForgeDataManagement.CreateRef);
+    root.ForgeDataManagement.FoldersApi = factory(root.ForgeDataManagement.ApiClient, root.ForgeDataManagement.BadInputResponse, root.ForgeDataManagement.ForbiddenResponse, root.ForgeDataManagement.FolderResponse, root.ForgeDataManagement.NotFoundResponse, root.ForgeDataManagement.JsonApiCollection, root.ForgeDataManagement.RefsResponse, root.ForgeDataManagement.CreateRef);
   }
-}(this, function(ApiClient, JsonApiCollection, CreateRef) {
+}(this, function(ApiClient, BadInputResponse, ForbiddenResponse, FolderResponse, NotFoundResponse, JsonApiCollection, RefsResponse, CreateRef) {
   'use strict';
 
   /**
@@ -63,7 +63,7 @@
      * Callback function to receive the result of the getFolder operation.
      * @callback module:api/FoldersApi~getFolderCallback
      * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
+     * @param {module:model/FolderResponse} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
@@ -72,7 +72,8 @@
      * @param {String} projectId the &#x60;project id&#x60;
      * @param {String} folderId the &#x60;folder id&#x60;
      * @param {module:api/FoldersApi~getFolderCallback} callback The callback function, accepting three arguments: error, data, response
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+     * data is of type: {@link module:model/FolderResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/FolderResponse}
      */
     this.getFolderEndPoint ='/data/v1/projects/{project_id}/folders/{folder_id}' ;
     this.getFolder = function(projectId, folderId, callback) {
@@ -103,7 +104,7 @@
       var authNames = ['oauth2_access_code'];
       var contentTypes = ['application/vnd.api+json'];
       var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = null;
+      var returnType = FolderResponse;
 
       return this.apiClient.callApi(
         this.getFolderEndPoint, 'GET',
@@ -155,9 +156,9 @@
         'folder_id': folderId
       };
       var queryParams = {
-        'filter[type]': this.apiClient.buildCollectionParam(opts['filterType'], 'multi'),
-        'filter[id]': this.apiClient.buildCollectionParam(opts['filterId'], 'multi'),
-        'filter[extension.type]': this.apiClient.buildCollectionParam(opts['filterExtensionType'], 'multi'),
+        'filter[type]': this.apiClient.buildCollectionParam(opts['filterType'], 'csv'),
+        'filter[id]': this.apiClient.buildCollectionParam(opts['filterId'], 'csv'),
+        'filter[extension.type]': this.apiClient.buildCollectionParam(opts['filterExtensionType'], 'csv'),
         'page[number]': opts['pageNumber'],
         'page[limit]': opts['pageLimit']
       };
@@ -182,7 +183,7 @@
      * Callback function to receive the result of the getFolderParent operation.
      * @callback module:api/FoldersApi~getFolderParentCallback
      * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
+     * @param {module:model/FolderResponse} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
@@ -191,7 +192,8 @@
      * @param {String} projectId the &#x60;project id&#x60;
      * @param {String} folderId the &#x60;folder id&#x60;
      * @param {module:api/FoldersApi~getFolderParentCallback} callback The callback function, accepting three arguments: error, data, response
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+     * data is of type: {@link module:model/FolderResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/FolderResponse}
      */
     this.getFolderParentEndPoint ='/data/v1/projects/{project_id}/folders/{folder_id}/parent' ;
     this.getFolderParent = function(projectId, folderId, callback) {
@@ -222,7 +224,7 @@
       var authNames = ['oauth2_access_code'];
       var contentTypes = ['application/vnd.api+json'];
       var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = null;
+      var returnType = FolderResponse;
 
       return this.apiClient.callApi(
         this.getFolderParentEndPoint, 'GET',
@@ -272,9 +274,9 @@
         'folder_id': folderId
       };
       var queryParams = {
-        'filter[type]': this.apiClient.buildCollectionParam(opts['filterType'], 'multi'),
-        'filter[id]': this.apiClient.buildCollectionParam(opts['filterId'], 'multi'),
-        'filter[extension.type]': this.apiClient.buildCollectionParam(opts['filterExtensionType'], 'multi')
+        'filter[type]': this.apiClient.buildCollectionParam(opts['filterType'], 'csv'),
+        'filter[id]': this.apiClient.buildCollectionParam(opts['filterId'], 'csv'),
+        'filter[extension.type]': this.apiClient.buildCollectionParam(opts['filterExtensionType'], 'csv')
       };
       var headerParams = {
       };
@@ -297,7 +299,7 @@
      * Callback function to receive the result of the getFolderRelationshipsRefs operation.
      * @callback module:api/FoldersApi~getFolderRelationshipsRefsCallback
      * @param {String} error Error message, if any.
-     * @param {Object} data The data returned by the service call.
+     * @param {module:model/RefsResponse} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
@@ -312,8 +314,8 @@
      * @param {module:model/String} opts.filterDirection filter by the direction of the reference
      * @param {Array.<String>} opts.filterExtensionType filter by the extension type
      * @param {module:api/FoldersApi~getFolderRelationshipsRefsCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Object}
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
+     * data is of type: {@link module:model/RefsResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/RefsResponse}
      */
     this.getFolderRelationshipsRefsEndPoint ='/data/v1/projects/{project_id}/folders/{folder_id}/relationships/refs' ;
     this.getFolderRelationshipsRefs = function(projectId, folderId, opts, callback) {
@@ -336,11 +338,11 @@
         'folder_id': folderId
       };
       var queryParams = {
-        'filter[type]': this.apiClient.buildCollectionParam(opts['filterType'], 'multi'),
-        'filter[id]': this.apiClient.buildCollectionParam(opts['filterId'], 'multi'),
-        'filter[refType]': this.apiClient.buildCollectionParam(opts['filterRefType'], 'multi'),
+        'filter[type]': this.apiClient.buildCollectionParam(opts['filterType'], 'csv'),
+        'filter[id]': this.apiClient.buildCollectionParam(opts['filterId'], 'csv'),
+        'filter[refType]': this.apiClient.buildCollectionParam(opts['filterRefType'], 'csv'),
         'filter[direction]': opts['filterDirection'],
-        'filter[extension.type]': this.apiClient.buildCollectionParam(opts['filterExtensionType'], 'multi')
+        'filter[extension.type]': this.apiClient.buildCollectionParam(opts['filterExtensionType'], 'csv')
       };
       var headerParams = {
       };
@@ -350,7 +352,7 @@
       var authNames = ['oauth2_access_code'];
       var contentTypes = ['application/vnd.api+json'];
       var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = Object;
+      var returnType = RefsResponse;
 
       return this.apiClient.callApi(
         this.getFolderRelationshipsRefsEndPoint, 'GET',

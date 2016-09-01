@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 <a name="getProject"></a>
 # **getProject**
-> getProject(hubId, projectId)
+> ProjectResponse getProject(hubId, projectId)
 
 
 
@@ -40,7 +40,7 @@ var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 };
 apiInstance.getProject(hubId, projectId, callback);
@@ -55,7 +55,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-null (empty response body)
+[**ProjectResponse**](ProjectResponse.md)
 
 ### Authorization
 
@@ -68,7 +68,7 @@ null (empty response body)
 
 <a name="getProjectHealth"></a>
 # **getProjectHealth**
-> getProjectHealth()
+> HealthResponse getProjectHealth()
 
 
 
@@ -84,7 +84,7 @@ var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 };
 apiInstance.getProjectHealth(callback);
@@ -95,7 +95,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-null (empty response body)
+[**HealthResponse**](HealthResponse.md)
 
 ### Authorization
 
@@ -108,7 +108,7 @@ No authorization required
 
 <a name="getProjectHub"></a>
 # **getProjectHub**
-> getProjectHub(hubId, projectId)
+> HubResponse getProjectHub(hubId, projectId)
 
 
 
@@ -134,7 +134,7 @@ var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 };
 apiInstance.getProjectHub(hubId, projectId, callback);
@@ -149,7 +149,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-null (empty response body)
+[**HubResponse**](HubResponse.md)
 
 ### Authorization
 
@@ -162,7 +162,7 @@ null (empty response body)
 
 <a name="postItem"></a>
 # **postItem**
-> Object postItem(projectIdbody)
+> ItemCreatedResponse postItem(projectIdbody)
 
 
 
@@ -203,7 +203,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**ItemCreatedResponse**](ItemCreatedResponse.md)
 
 ### Authorization
 
@@ -216,7 +216,7 @@ Name | Type | Description  | Notes
 
 <a name="postStorage"></a>
 # **postStorage**
-> Object postStorage(projectIdbody)
+> StorageCreatedResponse postStorage(projectIdbody)
 
 
 
@@ -257,7 +257,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**StorageCreatedResponse**](StorageCreatedResponse.md)
 
 ### Authorization
 
@@ -270,7 +270,7 @@ Name | Type | Description  | Notes
 
 <a name="postVersion"></a>
 # **postVersion**
-> Object postVersion(projectIdbody)
+> VersionCreatedResponse postVersion(projectIdbody)
 
 
 
@@ -311,7 +311,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**VersionCreatedResponse**](VersionCreatedResponse.md)
 
 ### Authorization
 

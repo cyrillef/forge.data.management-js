@@ -29,18 +29,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/JsonApiCollection', 'model/CreateRef'], factory);
+    define(['ApiClient', 'model/HealthResponse', 'model/ItemResponse', 'model/BadInputResponse', 'model/ForbiddenResponse', 'model/NotFoundResponse', 'model/FolderResponse', 'model/JsonApiCollection', 'model/RefsResponse', 'model/VersionResponse', 'model/VersionsResponse', 'model/CreateRef'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('../model/JsonApiCollection'), require('../model/CreateRef'));
+    module.exports = factory(require('../ApiClient'), require('../model/HealthResponse'), require('../model/ItemResponse'), require('../model/BadInputResponse'), require('../model/ForbiddenResponse'), require('../model/NotFoundResponse'), require('../model/FolderResponse'), require('../model/JsonApiCollection'), require('../model/RefsResponse'), require('../model/VersionResponse'), require('../model/VersionsResponse'), require('../model/CreateRef'));
   } else {
     // Browser globals (root is window)
     if (!root.ForgeDataManagement) {
       root.ForgeDataManagement = {};
     }
-    root.ForgeDataManagement.ItemsApi = factory(root.ForgeDataManagement.ApiClient, root.ForgeDataManagement.JsonApiCollection, root.ForgeDataManagement.CreateRef);
+    root.ForgeDataManagement.ItemsApi = factory(root.ForgeDataManagement.ApiClient, root.ForgeDataManagement.HealthResponse, root.ForgeDataManagement.ItemResponse, root.ForgeDataManagement.BadInputResponse, root.ForgeDataManagement.ForbiddenResponse, root.ForgeDataManagement.NotFoundResponse, root.ForgeDataManagement.FolderResponse, root.ForgeDataManagement.JsonApiCollection, root.ForgeDataManagement.RefsResponse, root.ForgeDataManagement.VersionResponse, root.ForgeDataManagement.VersionsResponse, root.ForgeDataManagement.CreateRef);
   }
-}(this, function(ApiClient, JsonApiCollection, CreateRef) {
+}(this, function(ApiClient, HealthResponse, ItemResponse, BadInputResponse, ForbiddenResponse, NotFoundResponse, FolderResponse, JsonApiCollection, RefsResponse, VersionResponse, VersionsResponse, CreateRef) {
   'use strict';
 
   /**
@@ -63,14 +63,15 @@
      * Callback function to receive the result of the getDataHealth operation.
      * @callback module:api/ItemsApi~getDataHealthCallback
      * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
+     * @param {module:model/HealthResponse} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
     /**
      * Returns the health information for the &#x60;data&#x60; domain. The health check assesses the current working status of the &#39;data&#39; domain service. 
      * @param {module:api/ItemsApi~getDataHealthCallback} callback The callback function, accepting three arguments: error, data, response
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+     * data is of type: {@link module:model/HealthResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/HealthResponse}
      */
     this.getDataHealthEndPoint ='/data/v1/health' ;
     this.getDataHealth = function(callback) {
@@ -89,7 +90,7 @@
       var authNames = [];
       var contentTypes = ['application/vnd.api+json'];
       var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = null;
+      var returnType = HealthResponse;
 
       return this.apiClient.callApi(
         this.getDataHealthEndPoint, 'GET',
@@ -102,7 +103,7 @@
      * Callback function to receive the result of the getItem operation.
      * @callback module:api/ItemsApi~getItemCallback
      * @param {String} error Error message, if any.
-     * @param {Object} data The data returned by the service call.
+     * @param {module:model/ItemResponse} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
@@ -111,8 +112,8 @@
      * @param {String} projectId the &#x60;project id&#x60;
      * @param {String} itemId the &#x60;item id&#x60;
      * @param {module:api/ItemsApi~getItemCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Object}
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
+     * data is of type: {@link module:model/ItemResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ItemResponse}
      */
     this.getItemEndPoint ='/data/v1/projects/{project_id}/items/{item_id}' ;
     this.getItem = function(projectId, itemId, callback) {
@@ -143,7 +144,7 @@
       var authNames = ['oauth2_access_code'];
       var contentTypes = ['application/vnd.api+json'];
       var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = Object;
+      var returnType = ItemResponse;
 
       return this.apiClient.callApi(
         this.getItemEndPoint, 'GET',
@@ -156,7 +157,7 @@
      * Callback function to receive the result of the getItemParentFolder operation.
      * @callback module:api/ItemsApi~getItemParentFolderCallback
      * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
+     * @param {module:model/FolderResponse} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
@@ -165,7 +166,8 @@
      * @param {String} projectId the &#x60;project id&#x60;
      * @param {String} itemId the &#x60;item id&#x60;
      * @param {module:api/ItemsApi~getItemParentFolderCallback} callback The callback function, accepting three arguments: error, data, response
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+     * data is of type: {@link module:model/FolderResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/FolderResponse}
      */
     this.getItemParentFolderEndPoint ='/data/v1/projects/{project_id}/items/{item_id}/parent' ;
     this.getItemParentFolder = function(projectId, itemId, callback) {
@@ -196,7 +198,7 @@
       var authNames = ['oauth2_access_code'];
       var contentTypes = ['application/vnd.api+json'];
       var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = null;
+      var returnType = FolderResponse;
 
       return this.apiClient.callApi(
         this.getItemParentFolderEndPoint, 'GET',
@@ -246,9 +248,9 @@
         'item_id': itemId
       };
       var queryParams = {
-        'filter[type]': this.apiClient.buildCollectionParam(opts['filterType'], 'multi'),
-        'filter[id]': this.apiClient.buildCollectionParam(opts['filterId'], 'multi'),
-        'filter[extension.type]': this.apiClient.buildCollectionParam(opts['filterExtensionType'], 'multi')
+        'filter[type]': this.apiClient.buildCollectionParam(opts['filterType'], 'csv'),
+        'filter[id]': this.apiClient.buildCollectionParam(opts['filterId'], 'csv'),
+        'filter[extension.type]': this.apiClient.buildCollectionParam(opts['filterExtensionType'], 'csv')
       };
       var headerParams = {
       };
@@ -271,7 +273,7 @@
      * Callback function to receive the result of the getItemRelationshipsRefs operation.
      * @callback module:api/ItemsApi~getItemRelationshipsRefsCallback
      * @param {String} error Error message, if any.
-     * @param {Object} data The data returned by the service call.
+     * @param {module:model/RefsResponse} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
@@ -286,8 +288,8 @@
      * @param {module:model/String} opts.filterDirection filter by the direction of the reference
      * @param {Array.<String>} opts.filterExtensionType filter by the extension type
      * @param {module:api/ItemsApi~getItemRelationshipsRefsCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Object}
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
+     * data is of type: {@link module:model/RefsResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/RefsResponse}
      */
     this.getItemRelationshipsRefsEndPoint ='/data/v1/projects/{project_id}/items/{item_id}/relationships/refs' ;
     this.getItemRelationshipsRefs = function(projectId, itemId, opts, callback) {
@@ -310,11 +312,11 @@
         'item_id': itemId
       };
       var queryParams = {
-        'filter[type]': this.apiClient.buildCollectionParam(opts['filterType'], 'multi'),
-        'filter[id]': this.apiClient.buildCollectionParam(opts['filterId'], 'multi'),
-        'filter[refType]': this.apiClient.buildCollectionParam(opts['filterRefType'], 'multi'),
+        'filter[type]': this.apiClient.buildCollectionParam(opts['filterType'], 'csv'),
+        'filter[id]': this.apiClient.buildCollectionParam(opts['filterId'], 'csv'),
+        'filter[refType]': this.apiClient.buildCollectionParam(opts['filterRefType'], 'csv'),
         'filter[direction]': opts['filterDirection'],
-        'filter[extension.type]': this.apiClient.buildCollectionParam(opts['filterExtensionType'], 'multi')
+        'filter[extension.type]': this.apiClient.buildCollectionParam(opts['filterExtensionType'], 'csv')
       };
       var headerParams = {
       };
@@ -324,7 +326,7 @@
       var authNames = ['oauth2_access_code'];
       var contentTypes = ['application/vnd.api+json'];
       var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = Object;
+      var returnType = RefsResponse;
 
       return this.apiClient.callApi(
         this.getItemRelationshipsRefsEndPoint, 'GET',
@@ -337,7 +339,7 @@
      * Callback function to receive the result of the getItemTip operation.
      * @callback module:api/ItemsApi~getItemTipCallback
      * @param {String} error Error message, if any.
-     * @param {Object} data The data returned by the service call.
+     * @param {module:model/VersionResponse} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
@@ -346,8 +348,8 @@
      * @param {String} projectId the &#x60;project id&#x60;
      * @param {String} itemId the &#x60;item id&#x60;
      * @param {module:api/ItemsApi~getItemTipCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Object}
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
+     * data is of type: {@link module:model/VersionResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/VersionResponse}
      */
     this.getItemTipEndPoint ='/data/v1/projects/{project_id}/items/{item_id}/tip' ;
     this.getItemTip = function(projectId, itemId, callback) {
@@ -378,7 +380,7 @@
       var authNames = ['oauth2_access_code'];
       var contentTypes = ['application/vnd.api+json'];
       var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = Object;
+      var returnType = VersionResponse;
 
       return this.apiClient.callApi(
         this.getItemTipEndPoint, 'GET',
@@ -391,7 +393,7 @@
      * Callback function to receive the result of the getItemVersions operation.
      * @callback module:api/ItemsApi~getItemVersionsCallback
      * @param {String} error Error message, if any.
-     * @param {Object} data The data returned by the service call.
+     * @param {module:model/VersionsResponse} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
@@ -407,8 +409,8 @@
      * @param {Integer} opts.pageNumber specify the page number
      * @param {Integer} opts.pageLimit specify the maximal number of elements per page
      * @param {module:api/ItemsApi~getItemVersionsCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Object}
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
+     * data is of type: {@link module:model/VersionsResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/VersionsResponse}
      */
     this.getItemVersionsEndPoint ='/data/v1/projects/{project_id}/items/{item_id}/versions' ;
     this.getItemVersions = function(projectId, itemId, opts, callback) {
@@ -431,10 +433,10 @@
         'item_id': itemId
       };
       var queryParams = {
-        'filter[type]': this.apiClient.buildCollectionParam(opts['filterType'], 'multi'),
-        'filter[id]': this.apiClient.buildCollectionParam(opts['filterId'], 'multi'),
-        'filter[extension.type]': this.apiClient.buildCollectionParam(opts['filterExtensionType'], 'multi'),
-        'filter[versionNumber]': this.apiClient.buildCollectionParam(opts['filterVersionNumber'], 'multi'),
+        'filter[type]': this.apiClient.buildCollectionParam(opts['filterType'], 'csv'),
+        'filter[id]': this.apiClient.buildCollectionParam(opts['filterId'], 'csv'),
+        'filter[extension.type]': this.apiClient.buildCollectionParam(opts['filterExtensionType'], 'csv'),
+        'filter[versionNumber]': this.apiClient.buildCollectionParam(opts['filterVersionNumber'], 'csv'),
         'page[number]': opts['pageNumber'],
         'page[limit]': opts['pageLimit']
       };
@@ -446,7 +448,7 @@
       var authNames = ['oauth2_access_code'];
       var contentTypes = ['application/vnd.api+json'];
       var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = Object;
+      var returnType = VersionsResponse;
 
       return this.apiClient.callApi(
         this.getItemVersionsEndPoint, 'GET',
