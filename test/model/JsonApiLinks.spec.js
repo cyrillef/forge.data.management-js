@@ -69,6 +69,12 @@
       //expect(instance).to.be.a(ForgeDataManagement.JsonApiLinks);
     });
 
+    it('should have the property self (base name: "self")', function() {
+      // uncomment below and update the code to test the property self
+      //var instane = new ForgeDataManagement.JsonApiLinks();
+      //expect(instance).to.be();
+    });
+
   });
 
 }));
