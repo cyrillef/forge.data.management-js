@@ -55,9 +55,12 @@
    * @param {module:ApiClient} apiClient Optional API client implementation to use,
    * default to {@link module:ApiClient#instance} if unspecified.
    */
+  var ForgeSDK = require('forge-apis');
   var exports = function(apiClient) {
     this.apiClient = apiClient || ApiClient.instance;
 
+    this.mdClient = new ForgeSDK.ItemsApi();
+    this.oauth2_access_code = new ForgeSDK.AuthClientThreeLegged('1234', '1223', 'http://localhost/', ['data:read']);
 
     /**
      * Callback function to receive the result of the getDataHealth operation.
@@ -75,28 +78,18 @@
      */
     this.getDataHealthEndPoint ='/data/v1/health' ;
     this.getDataHealth = function(callback) {
-      var postBody = null;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
+			var pr = this.mdClient.getDataHealth(oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-
-      var pathParams = {
-      };
-      var queryParams = {
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = [];
-      var contentTypes = ['application/vnd.api+json'];
-      var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = HealthResponse;
-
-      return this.apiClient.callApi(
-        this.getDataHealthEndPoint, 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
 
     /**
@@ -117,40 +110,18 @@
      */
     this.getItemEndPoint ='/data/v1/projects/{project_id}/items/{item_id}' ;
     this.getItem = function(projectId, itemId, callback) {
-      var postBody = null;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
+			var pr = this.mdClient.getItem(pprojectId, itemId, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-      // verify the required parameter 'projectId' is set
-      if (projectId == undefined || projectId == null) {
-        throw "Missing the required parameter 'projectId' when calling getItem";
-      }
-
-      // verify the required parameter 'itemId' is set
-      if (itemId == undefined || itemId == null) {
-        throw "Missing the required parameter 'itemId' when calling getItem";
-      }
-
-
-      var pathParams = {
-        'project_id': projectId,
-        'item_id': itemId
-      };
-      var queryParams = {
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_access_code'];
-      var contentTypes = ['application/vnd.api+json'];
-      var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = ItemResponse;
-
-      return this.apiClient.callApi(
-        this.getItemEndPoint, 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
 
     /**
@@ -171,40 +142,18 @@
      */
     this.getItemParentFolderEndPoint ='/data/v1/projects/{project_id}/items/{item_id}/parent' ;
     this.getItemParentFolder = function(projectId, itemId, callback) {
-      var postBody = null;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
+			var pr = this.mdClient.getItemParentFolder(projectId, itemId, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-      // verify the required parameter 'projectId' is set
-      if (projectId == undefined || projectId == null) {
-        throw "Missing the required parameter 'projectId' when calling getItemParentFolder";
-      }
-
-      // verify the required parameter 'itemId' is set
-      if (itemId == undefined || itemId == null) {
-        throw "Missing the required parameter 'itemId' when calling getItemParentFolder";
-      }
-
-
-      var pathParams = {
-        'project_id': projectId,
-        'item_id': itemId
-      };
-      var queryParams = {
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_access_code'];
-      var contentTypes = ['application/vnd.api+json'];
-      var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = FolderResponse;
-
-      return this.apiClient.callApi(
-        this.getItemParentFolderEndPoint, 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
 
     /**
@@ -229,44 +178,18 @@
      */
     this.getItemRefsEndPoint ='/data/v1/projects/{project_id}/items/{item_id}/refs' ;
     this.getItemRefs = function(projectId, itemId, opts, callback) {
-      opts = opts || {};
-      var postBody = null;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
+			var pr = this.mdClient.getItemRefs(projectId, itemId, opts, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-      // verify the required parameter 'projectId' is set
-      if (projectId == undefined || projectId == null) {
-        throw "Missing the required parameter 'projectId' when calling getItemRefs";
-      }
-
-      // verify the required parameter 'itemId' is set
-      if (itemId == undefined || itemId == null) {
-        throw "Missing the required parameter 'itemId' when calling getItemRefs";
-      }
-
-
-      var pathParams = {
-        'project_id': projectId,
-        'item_id': itemId
-      };
-      var queryParams = {
-        'filter[type]': this.apiClient.buildCollectionParam(opts['filterType'], 'csv'),
-        'filter[id]': this.apiClient.buildCollectionParam(opts['filterId'], 'csv'),
-        'filter[extension.type]': this.apiClient.buildCollectionParam(opts['filterExtensionType'], 'csv')
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_access_code'];
-      var contentTypes = ['application/vnd.api+json'];
-      var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = JsonApiCollection;
-
-      return this.apiClient.callApi(
-        this.getItemRefsEndPoint, 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
 
     /**
@@ -293,46 +216,18 @@
      */
     this.getItemRelationshipsRefsEndPoint ='/data/v1/projects/{project_id}/items/{item_id}/relationships/refs' ;
     this.getItemRelationshipsRefs = function(projectId, itemId, opts, callback) {
-      opts = opts || {};
-      var postBody = null;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
+			var pr = this.mdClient.getItemRelationshipsRefs(projectId, itemId, opts, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-      // verify the required parameter 'projectId' is set
-      if (projectId == undefined || projectId == null) {
-        throw "Missing the required parameter 'projectId' when calling getItemRelationshipsRefs";
-      }
-
-      // verify the required parameter 'itemId' is set
-      if (itemId == undefined || itemId == null) {
-        throw "Missing the required parameter 'itemId' when calling getItemRelationshipsRefs";
-      }
-
-
-      var pathParams = {
-        'project_id': projectId,
-        'item_id': itemId
-      };
-      var queryParams = {
-        'filter[type]': this.apiClient.buildCollectionParam(opts['filterType'], 'csv'),
-        'filter[id]': this.apiClient.buildCollectionParam(opts['filterId'], 'csv'),
-        'filter[refType]': this.apiClient.buildCollectionParam(opts['filterRefType'], 'csv'),
-        'filter[direction]': opts['filterDirection'],
-        'filter[extension.type]': this.apiClient.buildCollectionParam(opts['filterExtensionType'], 'csv')
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_access_code'];
-      var contentTypes = ['application/vnd.api+json'];
-      var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = RefsResponse;
-
-      return this.apiClient.callApi(
-        this.getItemRelationshipsRefsEndPoint, 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
 
     /**
@@ -353,40 +248,18 @@
      */
     this.getItemTipEndPoint ='/data/v1/projects/{project_id}/items/{item_id}/tip' ;
     this.getItemTip = function(projectId, itemId, callback) {
-      var postBody = null;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
+			var pr = this.mdClient.getItemTip(projectId, itemId, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-      // verify the required parameter 'projectId' is set
-      if (projectId == undefined || projectId == null) {
-        throw "Missing the required parameter 'projectId' when calling getItemTip";
-      }
-
-      // verify the required parameter 'itemId' is set
-      if (itemId == undefined || itemId == null) {
-        throw "Missing the required parameter 'itemId' when calling getItemTip";
-      }
-
-
-      var pathParams = {
-        'project_id': projectId,
-        'item_id': itemId
-      };
-      var queryParams = {
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_access_code'];
-      var contentTypes = ['application/vnd.api+json'];
-      var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = VersionResponse;
-
-      return this.apiClient.callApi(
-        this.getItemTipEndPoint, 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
 
     /**
@@ -414,47 +287,18 @@
      */
     this.getItemVersionsEndPoint ='/data/v1/projects/{project_id}/items/{item_id}/versions' ;
     this.getItemVersions = function(projectId, itemId, opts, callback) {
-      opts = opts || {};
-      var postBody = null;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
+			var pr = this.mdClient.getItemVersions(projectId, itemId, opts, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-      // verify the required parameter 'projectId' is set
-      if (projectId == undefined || projectId == null) {
-        throw "Missing the required parameter 'projectId' when calling getItemVersions";
-      }
-
-      // verify the required parameter 'itemId' is set
-      if (itemId == undefined || itemId == null) {
-        throw "Missing the required parameter 'itemId' when calling getItemVersions";
-      }
-
-
-      var pathParams = {
-        'project_id': projectId,
-        'item_id': itemId
-      };
-      var queryParams = {
-        'filter[type]': this.apiClient.buildCollectionParam(opts['filterType'], 'csv'),
-        'filter[id]': this.apiClient.buildCollectionParam(opts['filterId'], 'csv'),
-        'filter[extension.type]': this.apiClient.buildCollectionParam(opts['filterExtensionType'], 'csv'),
-        'filter[versionNumber]': this.apiClient.buildCollectionParam(opts['filterVersionNumber'], 'csv'),
-        'page[number]': opts['pageNumber'],
-        'page[limit]': opts['pageLimit']
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_access_code'];
-      var contentTypes = ['application/vnd.api+json'];
-      var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = VersionsResponse;
-
-      return this.apiClient.callApi(
-        this.getItemVersionsEndPoint, 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
 
     /**
@@ -475,45 +319,18 @@
      */
     this.postItemRelationshipsRefEndPoint ='/data/v1/projects/{project_id}/items/{item_id}/relationships/refs' ;
     this.postItemRelationshipsRef = function(projectId, itemId, body, callback) {
-      var postBody = body;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
+			var pr = this.mdClient.postItemRelationshipsRef(pprojectId, itemId, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-      // verify the required parameter 'projectId' is set
-      if (projectId == undefined || projectId == null) {
-        throw "Missing the required parameter 'projectId' when calling postItemRelationshipsRef";
-      }
-
-      // verify the required parameter 'itemId' is set
-      if (itemId == undefined || itemId == null) {
-        throw "Missing the required parameter 'itemId' when calling postItemRelationshipsRef";
-      }
-
-      // verify the required parameter 'body' is set
-      if (body == undefined || body == null) {
-        throw "Missing the required parameter 'body' when calling postItemRelationshipsRef";
-      }
-
-
-      var pathParams = {
-        'project_id': projectId,
-        'item_id': itemId
-      };
-      var queryParams = {
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_access_code'];
-      var contentTypes = ['application/vnd.api+json'];
-      var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = null;
-
-      return this.apiClient.callApi(
-        this.postItemRelationshipsRefEndPoint, 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
   };
 

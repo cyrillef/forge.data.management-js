@@ -55,9 +55,12 @@
    * @param {module:ApiClient} apiClient Optional API client implementation to use,
    * default to {@link module:ApiClient#instance} if unspecified.
    */
+  var ForgeSDK = require('forge-apis');
   var exports = function(apiClient) {
     this.apiClient = apiClient || ApiClient.instance;
 
+    this.mdClient = new ForgeSDK.FoldersApi();
+    this.oauth2_access_code = new ForgeSDK.AuthClientThreeLegged('1234', '1223', 'http://localhost/', ['data:read']);
 
     /**
      * Callback function to receive the result of the getFolder operation.
@@ -77,40 +80,18 @@
      */
     this.getFolderEndPoint ='/data/v1/projects/{project_id}/folders/{folder_id}' ;
     this.getFolder = function(projectId, folderId, callback) {
-      var postBody = null;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
+			var pr = this.mdClient.getFolder(projectId, folderId, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-      // verify the required parameter 'projectId' is set
-      if (projectId == undefined || projectId == null) {
-        throw "Missing the required parameter 'projectId' when calling getFolder";
-      }
-
-      // verify the required parameter 'folderId' is set
-      if (folderId == undefined || folderId == null) {
-        throw "Missing the required parameter 'folderId' when calling getFolder";
-      }
-
-
-      var pathParams = {
-        'project_id': projectId,
-        'folder_id': folderId
-      };
-      var queryParams = {
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_access_code'];
-      var contentTypes = ['application/vnd.api+json'];
-      var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = FolderResponse;
-
-      return this.apiClient.callApi(
-        this.getFolderEndPoint, 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
 
     /**
@@ -137,46 +118,18 @@
      */
     this.getFolderContentsEndPoint ='/data/v1/projects/{project_id}/folders/{folder_id}/contents' ;
     this.getFolderContents = function(projectId, folderId, opts, callback) {
-      opts = opts || {};
-      var postBody = null;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
+			var pr = this.mdClient.getFolderContents(projectId, folderId, opts, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-      // verify the required parameter 'projectId' is set
-      if (projectId == undefined || projectId == null) {
-        throw "Missing the required parameter 'projectId' when calling getFolderContents";
-      }
-
-      // verify the required parameter 'folderId' is set
-      if (folderId == undefined || folderId == null) {
-        throw "Missing the required parameter 'folderId' when calling getFolderContents";
-      }
-
-
-      var pathParams = {
-        'project_id': projectId,
-        'folder_id': folderId
-      };
-      var queryParams = {
-        'filter[type]': this.apiClient.buildCollectionParam(opts['filterType'], 'csv'),
-        'filter[id]': this.apiClient.buildCollectionParam(opts['filterId'], 'csv'),
-        'filter[extension.type]': this.apiClient.buildCollectionParam(opts['filterExtensionType'], 'csv'),
-        'page[number]': opts['pageNumber'],
-        'page[limit]': opts['pageLimit']
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_access_code'];
-      var contentTypes = ['application/vnd.api+json'];
-      var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = JsonApiCollection;
-
-      return this.apiClient.callApi(
-        this.getFolderContentsEndPoint, 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
 
     /**
@@ -197,40 +150,18 @@
      */
     this.getFolderParentEndPoint ='/data/v1/projects/{project_id}/folders/{folder_id}/parent' ;
     this.getFolderParent = function(projectId, folderId, callback) {
-      var postBody = null;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
+			var pr = this.mdClient.getFolderParent(projectId, folderId, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-      // verify the required parameter 'projectId' is set
-      if (projectId == undefined || projectId == null) {
-        throw "Missing the required parameter 'projectId' when calling getFolderParent";
-      }
-
-      // verify the required parameter 'folderId' is set
-      if (folderId == undefined || folderId == null) {
-        throw "Missing the required parameter 'folderId' when calling getFolderParent";
-      }
-
-
-      var pathParams = {
-        'project_id': projectId,
-        'folder_id': folderId
-      };
-      var queryParams = {
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_access_code'];
-      var contentTypes = ['application/vnd.api+json'];
-      var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = FolderResponse;
-
-      return this.apiClient.callApi(
-        this.getFolderParentEndPoint, 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
 
     /**
@@ -255,44 +186,18 @@
      */
     this.getFolderRefsEndPoint ='/data/v1/projects/{project_id}/folders/{folder_id}/refs' ;
     this.getFolderRefs = function(projectId, folderId, opts, callback) {
-      opts = opts || {};
-      var postBody = null;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
+			var pr = this.mdClient.getFolderRefs(projectId, folderId, opts, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-      // verify the required parameter 'projectId' is set
-      if (projectId == undefined || projectId == null) {
-        throw "Missing the required parameter 'projectId' when calling getFolderRefs";
-      }
-
-      // verify the required parameter 'folderId' is set
-      if (folderId == undefined || folderId == null) {
-        throw "Missing the required parameter 'folderId' when calling getFolderRefs";
-      }
-
-
-      var pathParams = {
-        'project_id': projectId,
-        'folder_id': folderId
-      };
-      var queryParams = {
-        'filter[type]': this.apiClient.buildCollectionParam(opts['filterType'], 'csv'),
-        'filter[id]': this.apiClient.buildCollectionParam(opts['filterId'], 'csv'),
-        'filter[extension.type]': this.apiClient.buildCollectionParam(opts['filterExtensionType'], 'csv')
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_access_code'];
-      var contentTypes = ['application/vnd.api+json'];
-      var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = JsonApiCollection;
-
-      return this.apiClient.callApi(
-        this.getFolderRefsEndPoint, 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
 
     /**
@@ -319,46 +224,18 @@
      */
     this.getFolderRelationshipsRefsEndPoint ='/data/v1/projects/{project_id}/folders/{folder_id}/relationships/refs' ;
     this.getFolderRelationshipsRefs = function(projectId, folderId, opts, callback) {
-      opts = opts || {};
-      var postBody = null;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
+			var pr = this.mdClient.getFolderRelationshipsRefs(projectId, folderId, opts, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-      // verify the required parameter 'projectId' is set
-      if (projectId == undefined || projectId == null) {
-        throw "Missing the required parameter 'projectId' when calling getFolderRelationshipsRefs";
-      }
-
-      // verify the required parameter 'folderId' is set
-      if (folderId == undefined || folderId == null) {
-        throw "Missing the required parameter 'folderId' when calling getFolderRelationshipsRefs";
-      }
-
-
-      var pathParams = {
-        'project_id': projectId,
-        'folder_id': folderId
-      };
-      var queryParams = {
-        'filter[type]': this.apiClient.buildCollectionParam(opts['filterType'], 'csv'),
-        'filter[id]': this.apiClient.buildCollectionParam(opts['filterId'], 'csv'),
-        'filter[refType]': this.apiClient.buildCollectionParam(opts['filterRefType'], 'csv'),
-        'filter[direction]': opts['filterDirection'],
-        'filter[extension.type]': this.apiClient.buildCollectionParam(opts['filterExtensionType'], 'csv')
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_access_code'];
-      var contentTypes = ['application/vnd.api+json'];
-      var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = RefsResponse;
-
-      return this.apiClient.callApi(
-        this.getFolderRelationshipsRefsEndPoint, 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
 
     /**
@@ -379,45 +256,18 @@
      */
     this.postFolderRelationshipsRefEndPoint ='/data/v1/projects/{project_id}/folders/{folder_id}/relationships/refs' ;
     this.postFolderRelationshipsRef = function(projectId, folderId, body, callback) {
-      var postBody = body;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
+			var pr = this.mdClient.postFolderRelationshipsRef(projectId, folderId, body, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-      // verify the required parameter 'projectId' is set
-      if (projectId == undefined || projectId == null) {
-        throw "Missing the required parameter 'projectId' when calling postFolderRelationshipsRef";
-      }
-
-      // verify the required parameter 'folderId' is set
-      if (folderId == undefined || folderId == null) {
-        throw "Missing the required parameter 'folderId' when calling postFolderRelationshipsRef";
-      }
-
-      // verify the required parameter 'body' is set
-      if (body == undefined || body == null) {
-        throw "Missing the required parameter 'body' when calling postFolderRelationshipsRef";
-      }
-
-
-      var pathParams = {
-        'project_id': projectId,
-        'folder_id': folderId
-      };
-      var queryParams = {
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_access_code'];
-      var contentTypes = ['application/vnd.api+json'];
-      var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = null;
-
-      return this.apiClient.callApi(
-        this.postFolderRelationshipsRefEndPoint, 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
   };
 

@@ -55,9 +55,12 @@
    * @param {module:ApiClient} apiClient Optional API client implementation to use,
    * default to {@link module:ApiClient#instance} if unspecified.
    */
+  var ForgeSDK = require('forge-apis');
   var exports = function(apiClient) {
     this.apiClient = apiClient || ApiClient.instance;
 
+    this.mdClient = new ForgeSDK.HubsApi();
+    this.oauth2_access_code = new ForgeSDK.AuthClientThreeLegged('1234', '1223', 'http://localhost/', ['data:read']);
 
     /**
      * Callback function to receive the result of the getHub operation.
@@ -76,34 +79,18 @@
      */
     this.getHubEndPoint ='/project/v1/hubs/{hub_id}' ;
     this.getHub = function(hubId, callback) {
-      var postBody = null;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
+			var pr = this.mdClient.getHub(hubId, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-      // verify the required parameter 'hubId' is set
-      if (hubId == undefined || hubId == null) {
-        throw "Missing the required parameter 'hubId' when calling getHub";
-      }
-
-
-      var pathParams = {
-        'hub_id': hubId
-      };
-      var queryParams = {
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_access_code'];
-      var contentTypes = ['application/vnd.api+json'];
-      var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = HubResponse;
-
-      return this.apiClient.callApi(
-        this.getHubEndPoint, 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
 
     /**
@@ -126,37 +113,18 @@
      */
     this.getHubProjectsEndPoint ='/project/v1/hubs/{hub_id}/projects' ;
     this.getHubProjects = function(hubId, opts, callback) {
-      opts = opts || {};
-      var postBody = null;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
+			var pr = this.mdClient.getHubProjects(phubId, opts, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-      // verify the required parameter 'hubId' is set
-      if (hubId == undefined || hubId == null) {
-        throw "Missing the required parameter 'hubId' when calling getHubProjects";
-      }
-
-
-      var pathParams = {
-        'hub_id': hubId
-      };
-      var queryParams = {
-        'filter[id]': this.apiClient.buildCollectionParam(opts['filterId'], 'csv'),
-        'filter[extension.type]': this.apiClient.buildCollectionParam(opts['filterExtensionType'], 'csv')
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_access_code'];
-      var contentTypes = ['application/vnd.api+json'];
-      var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = ProjectsResponse;
-
-      return this.apiClient.callApi(
-        this.getHubProjectsEndPoint, 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
 
     /**
@@ -178,31 +146,18 @@
      */
     this.getHubsEndPoint ='/project/v1/hubs' ;
     this.getHubs = function(opts, callback) {
-      opts = opts || {};
-      var postBody = null;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
+			var pr = this.mdClient.getHubs(opts, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-
-      var pathParams = {
-      };
-      var queryParams = {
-        'filter[id]': this.apiClient.buildCollectionParam(opts['filterId'], 'csv'),
-        'filter[extension.type]': this.apiClient.buildCollectionParam(opts['filterExtensionType'], 'csv')
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_access_code'];
-      var contentTypes = ['application/vnd.api+json'];
-      var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = HubsResponse;
-
-      return this.apiClient.callApi(
-        this.getHubsEndPoint, 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
   };
 

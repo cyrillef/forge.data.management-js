@@ -1,14 +1,14 @@
 {
   "name": "forge-data-management",
-  "version": "2.0.5",
+  "version": "2.1.0",
   "description": "Asynchronous Javascript/Node.js library for the Autodesk Forge Data Management API.",
   "homepage": "https://developer.autodesk.com/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/autodesk-forge/forge.data.management-js"
+    "url": "https://github.com/cyrillef/forge.data.management-js"
   },
   "bugs": {
-    "url": "https://github.com/autodesk-forge/forge.data.management-js/issues"
+    "url": "https://github.com/cyrillef/forge.data.management-js/issues"
   },
   "author": "",
   "contributors": [
@@ -29,7 +29,7 @@
     "api"
   ],
   "dependencies": {
-    "request": "2.74.0"
+    "forge-apis": "0.2.7"
   },
   "devDependencies": {
     "mocha": "~2.3.4",

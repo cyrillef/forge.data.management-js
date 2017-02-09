@@ -55,9 +55,12 @@
    * @param {module:ApiClient} apiClient Optional API client implementation to use,
    * default to {@link module:ApiClient#instance} if unspecified.
    */
+  var ForgeSDK = require('forge-apis');
   var exports = function(apiClient) {
     this.apiClient = apiClient || ApiClient.instance;
 
+    this.mdClient = new ForgeSDK.ProjectsApi();
+    this.oauth2_access_code = new ForgeSDK.AuthClientThreeLegged('1234', '1223', 'http://localhost/', ['data:read']);
 
     /**
      * Callback function to receive the result of the getProject operation.
@@ -77,40 +80,18 @@
      */
     this.getProjectEndPoint ='/project/v1/hubs/{hub_id}/projects/{project_id}' ;
     this.getProject = function(hubId, projectId, callback) {
-      var postBody = null;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
+			var pr = this.mdClient.getProject(hubId, projectId, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-      // verify the required parameter 'hubId' is set
-      if (hubId == undefined || hubId == null) {
-        throw "Missing the required parameter 'hubId' when calling getProject";
-      }
-
-      // verify the required parameter 'projectId' is set
-      if (projectId == undefined || projectId == null) {
-        throw "Missing the required parameter 'projectId' when calling getProject";
-      }
-
-
-      var pathParams = {
-        'hub_id': hubId,
-        'project_id': projectId
-      };
-      var queryParams = {
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_access_code'];
-      var contentTypes = ['application/vnd.api+json'];
-      var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = ProjectResponse;
-
-      return this.apiClient.callApi(
-        this.getProjectEndPoint, 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
 
     /**
@@ -129,28 +110,18 @@
      */
     this.getProjectHealthEndPoint ='/project/v1/health' ;
     this.getProjectHealth = function(callback) {
-      var postBody = null;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
+			var pr = this.mdClient.getProjectHealth(oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-
-      var pathParams = {
-      };
-      var queryParams = {
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = [];
-      var contentTypes = ['application/vnd.api+json'];
-      var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = HealthResponse;
-
-      return this.apiClient.callApi(
-        this.getProjectHealthEndPoint, 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
 
     /**
@@ -171,40 +142,18 @@
      */
     this.getProjectHubEndPoint ='/project/v1/hubs/{hub_id}/projects/{project_id}/hub' ;
     this.getProjectHub = function(hubId, projectId, callback) {
-      var postBody = null;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
+			var pr = this.mdClient.getProjectHub(hubId, projectId, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-      // verify the required parameter 'hubId' is set
-      if (hubId == undefined || hubId == null) {
-        throw "Missing the required parameter 'hubId' when calling getProjectHub";
-      }
-
-      // verify the required parameter 'projectId' is set
-      if (projectId == undefined || projectId == null) {
-        throw "Missing the required parameter 'projectId' when calling getProjectHub";
-      }
-
-
-      var pathParams = {
-        'hub_id': hubId,
-        'project_id': projectId
-      };
-      var queryParams = {
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_access_code'];
-      var contentTypes = ['application/vnd.api+json'];
-      var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = HubResponse;
-
-      return this.apiClient.callApi(
-        this.getProjectHubEndPoint, 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
 
     /**
@@ -225,39 +174,18 @@
      */
     this.postItemEndPoint ='/data/v1/projects/{project_id}/items' ;
     this.postItem = function(projectId, body, callback) {
-      var postBody = body;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
+			var pr = this.mdClient.postItem(projectId, body, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-      // verify the required parameter 'projectId' is set
-      if (projectId == undefined || projectId == null) {
-        throw "Missing the required parameter 'projectId' when calling postItem";
-      }
-
-      // verify the required parameter 'body' is set
-      if (body == undefined || body == null) {
-        throw "Missing the required parameter 'body' when calling postItem";
-      }
-
-
-      var pathParams = {
-        'project_id': projectId
-      };
-      var queryParams = {
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_access_code'];
-      var contentTypes = ['application/vnd.api+json'];
-      var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = ItemCreatedResponse;
-
-      return this.apiClient.callApi(
-        this.postItemEndPoint, 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
 
     /**
@@ -278,39 +206,18 @@
      */
     this.postStorageEndPoint ='/data/v1/projects/{project_id}/storage' ;
     this.postStorage = function(projectId, body, callback) {
-      var postBody = body;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
+			var pr = this.mdClient.postStorage(projectId, body, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-      // verify the required parameter 'projectId' is set
-      if (projectId == undefined || projectId == null) {
-        throw "Missing the required parameter 'projectId' when calling postStorage";
-      }
-
-      // verify the required parameter 'body' is set
-      if (body == undefined || body == null) {
-        throw "Missing the required parameter 'body' when calling postStorage";
-      }
-
-
-      var pathParams = {
-        'project_id': projectId
-      };
-      var queryParams = {
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_access_code'];
-      var contentTypes = ['application/vnd.api+json'];
-      var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = StorageCreatedResponse;
-
-      return this.apiClient.callApi(
-        this.postStorageEndPoint, 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
 
     /**
@@ -331,39 +238,18 @@
      */
     this.postVersionEndPoint ='/data/v1/projects/{project_id}/versions' ;
     this.postVersion = function(projectId, body, callback) {
-      var postBody = body;
+			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
+			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
+			var pr = this.mdClient.postVersion(projectId, body, oauth, oauth.getCredentials());
+			if (callback === undefined) {
+				return (new Promise(function (resolve, reject) {
+					pr.then(function (result) { resolve(result.body); })
+						.catch(function (err) { reject(err); });
+				})) ;
+			}
 
-      // verify the required parameter 'projectId' is set
-      if (projectId == undefined || projectId == null) {
-        throw "Missing the required parameter 'projectId' when calling postVersion";
-      }
-
-      // verify the required parameter 'body' is set
-      if (body == undefined || body == null) {
-        throw "Missing the required parameter 'body' when calling postVersion";
-      }
-
-
-      var pathParams = {
-        'project_id': projectId
-      };
-      var queryParams = {
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = ['oauth2_access_code'];
-      var contentTypes = ['application/vnd.api+json'];
-      var accepts = ['application/vnd.api+json', 'application/json'];
-      var returnType = VersionCreatedResponse;
-
-      return this.apiClient.callApi(
-        this.postVersionEndPoint, 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
+			pr.then(function (result) { callback(null, result.body); })
+				.catch(function (err) { callback(err, null); });
     };
   };
 
