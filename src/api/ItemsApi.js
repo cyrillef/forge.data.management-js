@@ -80,7 +80,7 @@
     this.getDataHealth = function(callback) {
 			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
 			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
-			var pr = this.mdClient.getDataHealth(oauth, oauth.getCredentials());
+			var pr = this.mdClient.getDataHealth(oauth, oauth.credentials);
 			if (callback === undefined) {
 				return (new Promise(function (resolve, reject) {
 					pr.then(function (result) { resolve(result.body); })
@@ -112,7 +112,7 @@
     this.getItem = function(projectId, itemId, callback) {
 			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
 			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
-			var pr = this.mdClient.getItem(pprojectId, itemId, oauth, oauth.getCredentials());
+			var pr = this.mdClient.getItem(pprojectId, itemId, oauth, oauth.credentials);
 			if (callback === undefined) {
 				return (new Promise(function (resolve, reject) {
 					pr.then(function (result) { resolve(result.body); })
@@ -144,7 +144,7 @@
     this.getItemParentFolder = function(projectId, itemId, callback) {
 			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
 			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
-			var pr = this.mdClient.getItemParentFolder(projectId, itemId, oauth, oauth.getCredentials());
+			var pr = this.mdClient.getItemParentFolder(projectId, itemId, oauth, oauth.credentials);
 			if (callback === undefined) {
 				return (new Promise(function (resolve, reject) {
 					pr.then(function (result) { resolve(result.body); })
@@ -180,7 +180,7 @@
     this.getItemRefs = function(projectId, itemId, opts, callback) {
 			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
 			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
-			var pr = this.mdClient.getItemRefs(projectId, itemId, opts, oauth, oauth.getCredentials());
+			var pr = this.mdClient.getItemRefs(projectId, itemId, opts, oauth, oauth.credentials);
 			if (callback === undefined) {
 				return (new Promise(function (resolve, reject) {
 					pr.then(function (result) { resolve(result.body); })
@@ -218,7 +218,7 @@
     this.getItemRelationshipsRefs = function(projectId, itemId, opts, callback) {
 			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
 			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
-			var pr = this.mdClient.getItemRelationshipsRefs(projectId, itemId, opts, oauth, oauth.getCredentials());
+			var pr = this.mdClient.getItemRelationshipsRefs(projectId, itemId, opts, oauth, oauth.credentials);
 			if (callback === undefined) {
 				return (new Promise(function (resolve, reject) {
 					pr.then(function (result) { resolve(result.body); })
@@ -250,7 +250,7 @@
     this.getItemTip = function(projectId, itemId, callback) {
 			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
 			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
-			var pr = this.mdClient.getItemTip(projectId, itemId, oauth, oauth.getCredentials());
+			var pr = this.mdClient.getItemTip(projectId, itemId, oauth, oauth.credentials);
 			if (callback === undefined) {
 				return (new Promise(function (resolve, reject) {
 					pr.then(function (result) { resolve(result.body); })
@@ -289,7 +289,7 @@
     this.getItemVersions = function(projectId, itemId, opts, callback) {
 			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
 			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
-			var pr = this.mdClient.getItemVersions(projectId, itemId, opts, oauth, oauth.getCredentials());
+			var pr = this.mdClient.getItemVersions(projectId, itemId, opts, oauth, oauth.credentials);
 			if (callback === undefined) {
 				return (new Promise(function (resolve, reject) {
 					pr.then(function (result) { resolve(result.body); })
@@ -321,7 +321,7 @@
     this.postItemRelationshipsRef = function(projectId, itemId, body, callback) {
 			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
 			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
-			var pr = this.mdClient.postItemRelationshipsRef(pprojectId, itemId, oauth, oauth.getCredentials());
+			var pr = this.mdClient.postItemRelationshipsRef(pprojectId, itemId, oauth, oauth.credentials);
 			if (callback === undefined) {
 				return (new Promise(function (resolve, reject) {
 					pr.then(function (result) { resolve(result.body); })

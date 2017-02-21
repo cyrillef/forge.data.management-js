@@ -60,6 +60,7 @@
     this.apiClient = apiClient || ApiClient.instance;
 
     this.mdClient = new ForgeSDK.HubsApi();
+	  this.prjClient = new ForgeSDK.ProjectsApi();
     this.oauth2_access_code = new ForgeSDK.AuthClientThreeLegged('1234', '1223', 'http://localhost/', ['data:read']);
 
     /**
@@ -81,7 +82,7 @@
     this.getHub = function(hubId, callback) {
 			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
 			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
-			var pr = this.mdClient.getHub(hubId, oauth, oauth.getCredentials());
+			var pr = this.mdClient.getHub(hubId, oauth, oauth.credentials);
 			if (callback === undefined) {
 				return (new Promise(function (resolve, reject) {
 					pr.then(function (result) { resolve(result.body); })
@@ -115,7 +116,7 @@
     this.getHubProjects = function(hubId, opts, callback) {
 			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
 			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
-			var pr = this.mdClient.getHubProjects(phubId, opts, oauth, oauth.getCredentials());
+			var pr = this.prjClient.getHubProjects(phubId, opts, oauth, oauth.credentials);
 			if (callback === undefined) {
 				return (new Promise(function (resolve, reject) {
 					pr.then(function (result) { resolve(result.body); })
@@ -148,7 +149,7 @@
     this.getHubs = function(opts, callback) {
 			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
 			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
-			var pr = this.mdClient.getHubs(opts, oauth, oauth.getCredentials());
+			var pr = this.mdClient.getHubs(opts, oauth, oauth.credentials);
 			if (callback === undefined) {
 				return (new Promise(function (resolve, reject) {
 					pr.then(function (result) { resolve(result.body); })

@@ -55,6 +55,12 @@
    * @class
    */
   var exports = function() {
+	  /**
+	   * The base URL against which to resolve every API call's (relative) path.
+	   * @type {String}
+	   * @default https://developer.api.autodesk.com/
+	   */
+	  this.basePath = 'https://developer.api.autodesk.com/'.replace(/\/+$/, '');
     /**
      * The authentication methods to be included for all API calls.
      * @type {Array.<String>}
@@ -72,7 +78,7 @@
 			if (auth.accessToken) {
 				auth.access_token = auth.accessToken;
 				if (authName === 'oauth2_access_code')
-					oauth2_access_code.setCredentials(auth);
+					oauth2_access_code.credentials =auth;
 				else if (authName === 'oauth2_application')
 					oauth2_application.setCredentials(auth);
 			}
@@ -86,7 +92,7 @@
 			if (auth.accessToken) {
 				auth.access_token = auth.accessToken;
 				if (authNames[i] === 'oauth2_access_code') {
-					oauth2_access_code.setCredentials(auth);
+					oauth2_access_code.credentials =auth;
 					return (oauth2_access_code);
 				} else if (authNames[i] === 'oauth2_application') {
 					oauth2_application.setCredentials(auth);

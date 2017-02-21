@@ -82,7 +82,7 @@
     this.getProject = function(hubId, projectId, callback) {
 			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
 			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
-			var pr = this.mdClient.getProject(hubId, projectId, oauth, oauth.getCredentials());
+			var pr = this.mdClient.getProject(hubId, projectId, oauth, oauth.credentials);
 			if (callback === undefined) {
 				return (new Promise(function (resolve, reject) {
 					pr.then(function (result) { resolve(result.body); })
@@ -112,7 +112,7 @@
     this.getProjectHealth = function(callback) {
 			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
 			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
-			var pr = this.mdClient.getProjectHealth(oauth, oauth.getCredentials());
+			var pr = this.mdClient.getProjectHealth(oauth, oauth.credentials);
 			if (callback === undefined) {
 				return (new Promise(function (resolve, reject) {
 					pr.then(function (result) { resolve(result.body); })
@@ -144,7 +144,7 @@
     this.getProjectHub = function(hubId, projectId, callback) {
 			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
 			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
-			var pr = this.mdClient.getProjectHub(hubId, projectId, oauth, oauth.getCredentials());
+			var pr = this.mdClient.getProjectHub(hubId, projectId, oauth, oauth.credentials);
 			if (callback === undefined) {
 				return (new Promise(function (resolve, reject) {
 					pr.then(function (result) { resolve(result.body); })
@@ -176,7 +176,7 @@
     this.postItem = function(projectId, body, callback) {
 			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
 			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
-			var pr = this.mdClient.postItem(projectId, body, oauth, oauth.getCredentials());
+			var pr = this.mdClient.postItem(projectId, body, oauth, oauth.credentials);
 			if (callback === undefined) {
 				return (new Promise(function (resolve, reject) {
 					pr.then(function (result) { resolve(result.body); })
@@ -208,7 +208,7 @@
     this.postStorage = function(projectId, body, callback) {
 			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
 			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
-			var pr = this.mdClient.postStorage(projectId, body, oauth, oauth.getCredentials());
+			var pr = this.mdClient.postStorage(projectId, body, oauth, oauth.credentials);
 			if (callback === undefined) {
 				return (new Promise(function (resolve, reject) {
 					pr.then(function (result) { resolve(result.body); })
@@ -240,7 +240,7 @@
     this.postVersion = function(projectId, body, callback) {
 			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
 			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
-			var pr = this.mdClient.postVersion(projectId, body, oauth, oauth.getCredentials());
+			var pr = this.mdClient.postVersion(projectId, body, oauth, oauth.credentials);
 			if (callback === undefined) {
 				return (new Promise(function (resolve, reject) {
 					pr.then(function (result) { resolve(result.body); })

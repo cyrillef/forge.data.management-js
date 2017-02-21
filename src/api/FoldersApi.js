@@ -82,7 +82,7 @@
     this.getFolder = function(projectId, folderId, callback) {
 			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
 			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
-			var pr = this.mdClient.getFolder(projectId, folderId, oauth, oauth.getCredentials());
+			var pr = this.mdClient.getFolder(projectId, folderId, oauth, oauth.credentials);
 			if (callback === undefined) {
 				return (new Promise(function (resolve, reject) {
 					pr.then(function (result) { resolve(result.body); })
@@ -120,7 +120,7 @@
     this.getFolderContents = function(projectId, folderId, opts, callback) {
 			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
 			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
-			var pr = this.mdClient.getFolderContents(projectId, folderId, opts, oauth, oauth.getCredentials());
+			var pr = this.mdClient.getFolderContents(projectId, folderId, opts, oauth, oauth.credentials);
 			if (callback === undefined) {
 				return (new Promise(function (resolve, reject) {
 					pr.then(function (result) { resolve(result.body); })
@@ -152,7 +152,7 @@
     this.getFolderParent = function(projectId, folderId, callback) {
 			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
 			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
-			var pr = this.mdClient.getFolderParent(projectId, folderId, oauth, oauth.getCredentials());
+			var pr = this.mdClient.getFolderParent(projectId, folderId, oauth, oauth.credentials);
 			if (callback === undefined) {
 				return (new Promise(function (resolve, reject) {
 					pr.then(function (result) { resolve(result.body); })
@@ -188,7 +188,7 @@
     this.getFolderRefs = function(projectId, folderId, opts, callback) {
 			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
 			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
-			var pr = this.mdClient.getFolderRefs(projectId, folderId, opts, oauth, oauth.getCredentials());
+			var pr = this.mdClient.getFolderRefs(projectId, folderId, opts, oauth, oauth.credentials);
 			if (callback === undefined) {
 				return (new Promise(function (resolve, reject) {
 					pr.then(function (result) { resolve(result.body); })
@@ -226,7 +226,7 @@
     this.getFolderRelationshipsRefs = function(projectId, folderId, opts, callback) {
 			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
 			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
-			var pr = this.mdClient.getFolderRelationshipsRefs(projectId, folderId, opts, oauth, oauth.getCredentials());
+			var pr = this.mdClient.getFolderRelationshipsRefs(projectId, folderId, opts, oauth, oauth.credentials);
 			if (callback === undefined) {
 				return (new Promise(function (resolve, reject) {
 					pr.then(function (result) { resolve(result.body); })
@@ -258,7 +258,7 @@
     this.postFolderRelationshipsRef = function(projectId, folderId, body, callback) {
 			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
 			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
-			var pr = this.mdClient.postFolderRelationshipsRef(projectId, folderId, body, oauth, oauth.getCredentials());
+			var pr = this.mdClient.postFolderRelationshipsRef(projectId, folderId, body, oauth, oauth.credentials);
 			if (callback === undefined) {
 				return (new Promise(function (resolve, reject) {
 					pr.then(function (result) { resolve(result.body); })

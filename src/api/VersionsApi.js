@@ -82,7 +82,7 @@
     this.getVersion = function(projectId, versionId, callback) {
 			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
 			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
-			var pr = this.mdClient.getVersion(projectId, versionId, oauth, oauth.getCredentials());
+			var pr = this.mdClient.getVersion(projectId, versionId, oauth, oauth.credentials);
 			if (callback === undefined) {
 				return (new Promise(function (resolve, reject) {
 					pr.then(function (result) { resolve(result.body); })
@@ -114,7 +114,7 @@
     this.getVersionItem = function(projectId, versionId, callback) {
 			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
 			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
-			var pr = this.mdClient.getVersionItem(projectId, versionId, oauth, oauth.getCredentials());
+			var pr = this.mdClient.getVersionItem(projectId, versionId, oauth, oauth.credentials);
 			if (callback === undefined) {
 				return (new Promise(function (resolve, reject) {
 					pr.then(function (result) { resolve(result.body); })
@@ -150,7 +150,7 @@
     this.getVersionRefs = function(projectId, versionId, opts, callback) {
 			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
 			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
-			var pr = this.mdClient.getVersionRefs(projectId, versionId, opts, oauth, oauth.getCredentials());
+			var pr = this.mdClient.getVersionRefs(projectId, versionId, opts, oauth, oauth.credentials);
 			if (callback === undefined) {
 				return (new Promise(function (resolve, reject) {
 					pr.then(function (result) { resolve(result.body); })
@@ -188,7 +188,7 @@
     this.getVersionRelationshipsRefs = function(projectId, versionId, opts, callback) {
 			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
 			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
-			var pr = this.mdClient.getVersionRelationshipsRefs(projectId, versionId, opts, oauth, oauth.getCredentials());
+			var pr = this.mdClient.getVersionRelationshipsRefs(projectId, versionId, opts, oauth, oauth.credentials);
 			if (callback === undefined) {
 				return (new Promise(function (resolve, reject) {
 					pr.then(function (result) { resolve(result.body); })
@@ -220,7 +220,7 @@
     this.postVersionRelationshipsRef = function(projectId, versionId, body, callback) {
 			//this.apiClient.applyToAuthObjects (this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']) ;
 			var oauth = this.apiClient.getAuthObject(this.oauth2_access_code, this.oauth2_application, ['oauth2_access_code']);
-			var pr = this.mdClient.postVersionRelationshipsRef(projectId, versionId, oauth, oauth.getCredentials());
+			var pr = this.mdClient.postVersionRelationshipsRef(projectId, versionId, oauth, oauth.credentials);
 			if (callback === undefined) {
 				return (new Promise(function (resolve, reject) {
 					pr.then(function (result) { resolve(result.body); })
